@@ -1,0 +1,82 @@
+把List<String>里的所有元素变成一个字符串  StringUtils.join(string1.toArray(), ","）
+
+webmagic的xpath不支持last（）函数
+
+options.setExperimentalOption("excludeSwitches",new String[]{"enable-automation"});//开发者模式，跳过反爬
+输入window.navigator.webdriver 结果为true，判定为机器人
+
+recaptcha 验证  谷歌验证码  破解方式.....   反爬措施:  限制ip 验证码、滑动验证等
+
+站内搜索 Elastic Search 基于Lucene      nutch分布式爬虫，关键词:搜索引擎、爬虫、seo
+
+今天看到前辈的话
+1.不要迷信“大牛”，多看基础
+2.少说废话，多写代码，刷刷算法题，找点项目做做
+3.做一个程序员，不是码农，你学习的是编程的思想、解决问题的逻辑、持续学习的能力，要重视基础课程，
+4.短期不要高估自己，长期不要低估自己，学编程的过程会经历数个瓶颈期，中间你也许会数次感到万分绝望，
+甚至开始怀疑人生，需要坚持。
+5，最后相信自己，尊重自己的职业，可以怀疑人生，但是不要放弃，基础学扎实，学算发，不要追求热门，多写有质量的代码
+6.90%的编程工作来自内部软件，要耐得住寂寞
+7.好的程序员专注于为公司带来价值，公司雇佣是要创造价值的，不是让你学习编程
+9.不要给自己设限，哪种语言都可以创造价值
+10.求职要自信
+11.要学会沟通，要一直学习
+
+
+centos重启 reboot
+
+docker操作
+systemctl enable docker 设置docker开机自启动
+service docker restart   重启
+docker start stop restart rm <id> 容器操作
+docker ps -a  没有-a就是查看正在运行的
+docker images：列出镜像
+docker rmi  <image ID>删除镜像 docker search <image>搜索镜像 docker pull <image>拉取镜像
+docker exec -it containerID /bin/bash #进入容器  ctrl+p+q 退出容器但不关闭
+
+docker run  还是看书签吧
+
+
+maven安装 下载解压  vim /etc/profile配置环境变量
+export M2_HOME=/usr/local/maven/apache-maven-3.6.1
+export PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin
+重启配置source /etc/profile   mvn -v 查看
+
+Springcloud用docker部署  maaven-package打成jar包，jar包和dockerFile上传
+docker build -t ace-center .  生成镜像  docker images 查看
+docker run -p 8761:8761 -d ace-center  运行注册中心
+
+
+idea常用快捷键
+1.CTR+N     搜索类
+2.CTR+SHIT+N 搜索文件
+3.CTR+ALT+空格  代码提示（类似于ALT+/）
+4.ALT+F7    查询在某处使用
+5.CTR+Q    查看代码提示及内容
+6.CTR+B    查看类的声明 还可以直接按住：CTR 再点击鼠标 （和eclipse的用法是一样的）
+7.CTR+F12  查看文件列表（File Structure）
+8.SHIFT+F6 重命名（按住ENTER）重命名成功。
+12 ALT+INSERT  :生成getter和setter的方法  在pom.xml文件里alt+insert可以选第一个进行导包
+14 CTR+ALT+T 选中某一个段代码进行try catch
+15 CTR+SHIT+空格  ：新建类时  在new 后面使用 （提示自动创建类）
+16 CTR+ALT+B ：查看接口或者抽象类的子类。
+17.CTR+SHIT+/  :注释（整体注释）
+18.CTR+/       :行注释
+19.CTR+D :换行 并复制
+20.Ctrl+Alt+L整理代码格式
+21.CRT+O重写超类方法
+22.Alt+Enter 在分号之前,选择强转类型
+23.Ctrl+Shift+t:放在接口类上生成单元测试
+24. Ctrl+R是替换
+25.代码块抽取 Ctrl + Alt + M
+26.生成实现类  接口的名称处按 Alt+Enter 单击Implement interface
+27.查找接口的实现类：ctrl + alt +B
+28.显示类中的变量、方法 CTRL + F12
+
+
+idea使用git上传到github  看这个 https://www.cnblogs.com/jinjiyese153/p/6796668.html
+
+
+
+
+
