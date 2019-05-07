@@ -48,30 +48,30 @@ docker run -p 8761:8761 -d ace-center  运行注册中心
 
 
 idea常用快捷键
-1.CTR+N     搜索类
-2.CTR+SHIT+N 搜索文件
-3.CTR+ALT+空格  代码提示（类似于ALT+/）
-4.ALT+F7    查询在某处使用
-5.CTR+Q    查看代码提示及内容
-6.CTR+B    查看类的声明 还可以直接按住：CTR 再点击鼠标 （和eclipse的用法是一样的）
-7.CTR+F12  查看文件列表（File Structure）
-8.SHIFT+F6 重命名（按住ENTER）重命名成功。
-12 ALT+INSERT  :生成getter和setter的方法  在pom.xml文件里alt+insert可以选第一个进行导包
-14 CTR+ALT+T 选中某一个段代码进行try catch
-15 CTR+SHIT+空格  ：新建类时  在new 后面使用 （提示自动创建类）
-16 CTR+ALT+B ：查看接口或者抽象类的子类。
-17.CTR+SHIT+/  :注释（整体注释）
-18.CTR+/       :行注释
-19.CTR+D :换行 并复制
-20.Ctrl+Alt+L整理代码格式
-21.CRT+O重写超类方法
-22.Alt+Enter 在分号之前,选择强转类型
-23.Ctrl+Shift+t:放在接口类上生成单元测试
-24. Ctrl+R是替换
-25.代码块抽取 Ctrl + Alt + M
-26.生成实现类  接口的名称处按 Alt+Enter 单击Implement interface
-27.查找接口的实现类：ctrl + alt +B
-28.显示类中的变量、方法 CTRL + F12
+1.CTR+N             搜索类
+2.CTR+SHIT+N        搜索文件
+3.CTR+ALT+空格      代码提示（类似于ALT+/）
+4.ALT+F7            查询在某处使用
+5.CTR+Q             查看代码提示及内容
+6.CTR+B             查看类的声明 还可以直接按住：CTR 再点击鼠标 （和eclipse的用法是一样的）
+7.CTR+F12           查看文件列表（File Structure）
+8.SHIFT+F6          重命名（按住ENTER）重命名成功。
+12 ALT+INSERT       生成getter和setter的方法  在pom.xml文件里alt+insert可以选第一个进行导包
+14 CTR+ALT+T        选中某一个段代码进行try catch
+15 CTR+SHIT+空格    新建类时  在new 后面使用 （提示自动创建类）
+16 CTR+ALT+B        查看接口或者抽象类的子类。
+17.CTR+SHIT+/       注释（整体注释）
+18.CTR+/            行注释
+19.CTR+D            换行 并复制
+20.Ctrl+Alt+L       整理代码格式
+21.CRT+O            重写超类方法
+22.Alt+Enter        在分号之前,选择强转类型
+23.Ctrl+Shift+t     放在接口类上生成单元测试
+24. Ctrl+R          替换
+25.Ctrl + Alt + M   代码块抽取
+26.生成实现类        接口的名称处按 Alt+Enter 单击Implement interface
+27.ctrl + alt +B    查找接口的实现类
+28.CTRL + F12       显示类中的变量、方法
 
 
 idea使用git上传到github  看这个 https://www.cnblogs.com/jinjiyese153/p/6796668.html

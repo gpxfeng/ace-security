@@ -1,9 +1,14 @@
-# Cloud-Admin(`开源项目`）
-Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具有统一授权、认证后台管理系统，其中包含具备用户管理、资源权限管理、网关API管理等多个模块，支持多业务系统并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，适合学习和直接项目中使用。核心技术采用`Spring Boot2`以及`Spring Cloud (Finchley.M8)`相关核心组件，前端采用`vue-element-admin`组件。 QQ群号：169824183
+# Cloud-DSF
+项目是基于Cloud-Admin开发脚手架，它是国内首个基于`Spring Cloud`微`服务`化`开发平台`
+，具有统一授权、认证后台管理系统，
+其中包含具备用户管理、资源权限管理
+、网关API管理等多个模块，支持多业务系统并行开发，
+代码简洁，架构清晰，适合学习和直接项目中使用
+。核心技术采用`Spring Boot2`以及`Spring Cloud (Finchley.M8)`相关核心组件，
+前端采用`vue-element-admin`组件。开源项目地址(https://github.com/wxiaoqi/Spring-Cloud-Admin)
 
-## 该项目由他人进行维护，最新地址：https://gitee.com/minull/ace-security
-### 开源用户登记，宣传用：[点击打开](https://gitee.com/minull/ace-security/issues/II9SP)
-### 最新更新日志，[点击查看](https://gitee.com/minull/ace-security/wikis/Cloud-Admin%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+## 该开源项目由码云进行维护，最新地址：https://gitee.com/minull/ace-security
+
 
 # 模块说明
 ![image.png](http://upload-images.jianshu.io/upload_images/5700335-8d69f4e885a4ec85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -53,24 +58,27 @@ Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具
 ```
 
 ### 环境须知
-- mysql一个，redis一个，rabbitmq一个 docker安装 
+- mysql一个，redis一个，rabbitmq一个 
 - jdk1.8
-- IDE插件一个，`lombok插件`，具体百度即可
+- IDE插件一个，`lombok插件`，否则你的IDE会报代码缺失。
+- 安装过程可看 学习笔记.txt
 
 ### 须知
 因为AG-Admin是一个`前后端分离`的项目，所以后端的服务必须先启动，在后端服务启动完成后，再启动前端的工程。
 
-### 最多人问：代码有漏
-下载完后端代码后，记得先安装`lombok插件`，否则你的IDE会报代码缺失。
 
 ### 运行步骤
-- 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql、ace-auth-server/db/init.sql、ace-trace
-- 修改配置数据库配置：ace-admin/src/main/resources/application.yml、ace-gate/src/main/resources/application.yml
-- 按`顺序`运行main类：CenterBootstrap（ace-center）、AuthBootstrap（ace-auth-server）、AdminBootstrap（ace-admin）、GatewayServerBootstrap（ace-gateway-v2）
+- 运行数据库脚本：依次运行数据库：ace-admin/db/init.sql;ace-auth-server/db/init.sql  运行sql脚本
+- 修改配置数据库配置：ace-admin/src/main/resources/application.yml;ace-gate/src/main/resources/application.yml  
+- 按`顺序`运行main类：
+--CenterBootstrap（ace-center）   注册中心
+--AuthBootstrap（ace-auth-server）服务
+--AdminBootstrap（ace-admin）     服务
+--GatewayServerBootstrap（ace-gateway-v2） 服务
 
 ----
 
-## UI工程启动[Cloud-Admin-UI][点击打开](https://gitee.com/minull/AG-Admin-v2.0)
+## UI工程启动[ElementUI-Admin][点击打开](https://github.com/gpxfeng/ElementUI-Admin)
 
 ### 环境搭建
 ```
@@ -98,6 +106,7 @@ npm 版本：3.10.10
 ```bash
     # 构建生成环境
     npm run build:prod
+    win环境下会有 NODE_ENV 报错
 ```
 
 ### 目录结构
@@ -136,18 +145,6 @@ npm 版本：3.10.10
 ![img](http://upload-images.jianshu.io/upload_images/5700335-002735d1727ec11b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![img](http://upload-images.jianshu.io/upload_images/5700335-e5e56924aaeacf1e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![img](http://upload-images.jianshu.io/upload_images/5700335-b3044673b4a55203.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![img](http://upload-images.jianshu.io/upload_images/5700335-75151a17ae4319cf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![img](http://upload-images.jianshu.io/upload_images/5700335-ab942829c130389e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![img](http://upload-images.jianshu.io/upload_images/5700335-30e6df679695f150.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![img](http://upload-images.jianshu.io/upload_images/5700335-347e3e761188a824.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![img](http://upload-images.jianshu.io/upload_images/5700335-569696e4e70e5ad2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 
