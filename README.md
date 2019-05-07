@@ -53,7 +53,7 @@ Cloud-Admin是国内首个基于`Spring Cloud`微`服务`化`开发平台`，具
 ```
 
 ### 环境须知
-- mysql一个，redis一个，rabbitmq一个
+- mysql一个，redis一个，rabbitmq一个 docker安装
 - jdk1.8
 - IDE插件一个，`lombok插件`，具体百度即可
 
