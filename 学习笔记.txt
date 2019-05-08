@@ -77,6 +77,110 @@ idea常用快捷键
 idea使用git上传到github  看这个 https://www.cnblogs.com/jinjiyese153/p/6796668.html
 
 
+ace-center 注册中心
+
+
+ace-auth-------------服务鉴权中心   下面3个模块
+ace-auth-client   接口中心？
+ace-auth-common   服务鉴权工具类？
+ace-auth-server   登录服务入口？
+
+
+ace-common-------------通用脚手架？ 一堆base,utils继承实现了就能用？
+
+
+ace-control-------------运维中心（监控、链路）   下面有2个模块
+ace-monitor     只有一个启动类和配置文件，是健康监控机制？
+ace-trace       只有一个启动类和配置文件，zipkin  分布式跟踪系统   追踪日志存储需要执行sql脚本，注册服务
+
+
+ace-gate-------------网关负载中心zuul   下面3个模块
+ace-gate-ratelimit    配置内容？拦截器内容？
+ace-gate-zuul    feign通信服务配置？网关设置？
+ace-gateway-v2    上面模块的简约配置，只用来登录？
+
+
+ace-modules------------- 公共服务模块（基础系统、搜索、OSS） 下面4个子模块
+ace-admin       基础系统，登录模块？
+ace-generator    代码生成工具
+ace-interface      接口，类似dto一样的东西
+ace-tool         搜索系统，用的是lucene，ik分词器，对象存储:OSS,云存储
+
+
+ace-sidebar--------------调用第三方语言
+ace-sidebar-client-demo   调用Python  web程序 需先安装
+ace-sidebar-server        远程调用，需封装上面的模块
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
