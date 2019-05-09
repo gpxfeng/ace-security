@@ -2,21 +2,15 @@
 
 AG-Admin2.0版本的通用代码生成器！加速业务开发！
 
-## 关于代码
-[后端github项目地址](https://github.com/wxiaoqi/ace-admin)
+## 目标：做成一个服务添加进注册中心
+## 并且把现在的页面做成vue
+## 加一个功能：在前端页面创建表并导入数据库 
+[1]在前端页面的填写好内容，把填写的内容提交到后台
 
-[后端gitchina项目地址](http://git.oschina.net/geek_qi/ace-security)
+[2]后台接收内容，拼装成SQL
 
+[3]用jdbc连接数据库，并执行SQL
 
+[4]返回执行情况（成功与否
 
-## 技术交流
-交流群：169824183
-
-## 关于作者
-[简书](http://www.jianshu.com/)
-
-[CSDN](http://blog.csdn.net/u011282930)
-
-[码云](http://git.oschina.net/geek_qi)
-
-[github](https://github.com/wxiaoqi)
+[5]前端页面刷新，使用新表生成代码

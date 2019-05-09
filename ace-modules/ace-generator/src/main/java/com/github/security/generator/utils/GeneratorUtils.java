@@ -1,7 +1,7 @@
-package com.github.wxiaoqi.security.generator.utils;
+package com.github.security.generator.utils;
 
-import com.github.wxiaoqi.security.generator.entity.ColumnEntity;
-import com.github.wxiaoqi.security.generator.entity.TableEntity;
+import com.github.security.generator.entity.ColumnEntity;
+import com.github.security.generator.entity.TableEntity;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -22,9 +22,9 @@ import java.util.zip.ZipOutputStream;
 /**
  * 代码生成器   工具类
  *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年12月19日 下午11:40:24
+ * @author Mr.D
+ * @email 792513147@qq.com
+ * @date 2019年05月08日
  */
 public class GeneratorUtils {
 

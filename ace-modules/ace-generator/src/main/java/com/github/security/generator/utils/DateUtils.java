@@ -1,8 +1,13 @@
-package com.github.wxiaoqi.security.generator.utils;
+package com.github.security.generator.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author Mr.D
+ * @email 792513147@qq.com
+ * @date 2019年05月08日
+* */
 public class DateUtils {
 	/** 时间格式(yyyy-MM-dd) */
 	public final static String DATE_PATTERN = "yyyy-MM-dd";

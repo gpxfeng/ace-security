@@ -1,4 +1,4 @@
-package com.github.wxiaoqi.security.generator.mapper;
+package com.github.security.generator.mapper;
 
 import java.util.List;
 import java.util.Map;
@@ -6,9 +6,9 @@ import java.util.Map;
 /**
  * 代码生成器
  *
- * @author Mr.AG
- * @email 463540703@qq.com
- * @date 2017年08月25日
+ * @author Mr.D
+ * @email 792513147@qq.com
+ * @date 2019年05月08日
  */
 public interface GeneratorMapper {
 	

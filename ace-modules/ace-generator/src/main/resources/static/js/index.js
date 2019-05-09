@@ -12,8 +12,8 @@ layui.config({
         layer = layui.layer;
     navbar = layui.navbar();
     tab = layui.tab({
-        elem: '.admin-nav-card' //设置选项卡容器
-        ,
+        elem: '.admin-nav-card', //设置选项卡容器
+
         //maxSetting: {
         //	max: 5,
         //	tipMsg: '只能开5个哇，不能再开了。真的。'

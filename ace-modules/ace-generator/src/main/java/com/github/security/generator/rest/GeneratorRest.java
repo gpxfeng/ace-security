@@ -1,8 +1,8 @@
-package com.github.wxiaoqi.security.generator.rest;
+package com.github.security.generator.rest;
 
 import com.alibaba.fastjson.JSON;
 import com.github.wxiaoqi.security.common.msg.TableResultResponse;
-import com.github.wxiaoqi.security.generator.service.GeneratorService;
+import com.github.security.generator.service.GeneratorService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by ace on 2017/8/25.
+ * @author Mr.D
+ * @email 792513147@qq.com
+ * @date 2019年05月08日
  */
 @Controller
 @RequestMapping("/base/generator")

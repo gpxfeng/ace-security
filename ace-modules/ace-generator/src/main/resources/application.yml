@@ -1,12 +1,25 @@
 # Tomcat
+#server:
+#    tomcat:
+#        max-threads: 10
+#        min-spare-threads: 10
+#    port: 7777
+
+#做成服务注册
 server:
-    tomcat:
-        max-threads: 10
-        min-spare-threads: 10
-    port: 7777
+    port: 8767
+
+eureka:
+    client:
+        serviceUrl:
+#            defaultZone: http://localhost:8761/eureka/
+#            docker 部署开启
+            defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
 
 # mysql
 spring:
+    application:
+        name: ace-generator
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver

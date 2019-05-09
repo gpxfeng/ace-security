@@ -1,7 +1,7 @@
-package com.github.wxiaoqi.security.generator.service;
+package com.github.security.generator.service;
 
-import com.github.wxiaoqi.security.generator.mapper.GeneratorMapper;
-import com.github.wxiaoqi.security.generator.utils.GeneratorUtils;
+import com.github.security.generator.mapper.GeneratorMapper;
+import com.github.security.generator.utils.GeneratorUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +13,10 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * 代码生成器
- * 
- * @author Mr.AG
- * @email 463540703@qq.com
- * @date 2017年08月25日
+ *
+ * @author Mr.D
+ * @email 792513147@qq.com
+ * @date 2019年05月08日
  */
 @Service
 public class GeneratorService {

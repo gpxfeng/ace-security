@@ -1,11 +1,11 @@
-package com.github.wxiaoqi.security.generator.entity;
+package com.github.security.generator.entity;
 
 /**
  * 列的属性
  *
- * @author Mr.AG
- * @email 463540703@qq.com
- * @date 2017年08月25日
+ * @author Mr.D
+ * @email 792513147@qq.com
+ * @date 2019年05月08日
  */
 public class ColumnEntity {
 	//列名
