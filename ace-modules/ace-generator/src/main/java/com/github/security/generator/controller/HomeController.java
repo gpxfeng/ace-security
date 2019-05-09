@@ -15,20 +15,26 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("")
-public class HomeController{
+public class HomeController {
 
 
-    @RequestMapping(value = "index",method = RequestMethod.GET)
-    public String index(Map<String,Object> map){
+    @RequestMapping(value = "index", method = RequestMethod.GET)
+    public String index(Map<String, Object> map) {
         return "index";
     }
 
-    @RequestMapping(value = "about",method = RequestMethod.GET)
-    public String about(){
+    @RequestMapping(value = "about", method = RequestMethod.GET)
+    public String about() {
         return "about";
     }
-    @RequestMapping(value = "generator",method = RequestMethod.GET)
-    public String user(){
-        return "lists";
+
+    @RequestMapping(value = "generator_list", method = RequestMethod.GET)
+    public String user() {
+        return "generator/list";
+    }
+
+    @RequestMapping(value = "createTable", method = RequestMethod.GET)
+    public String createTable() {
+        return "createTable/add";
     }
 }

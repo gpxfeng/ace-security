@@ -1,5 +1,5 @@
 var generator = {
-    baseUrl: "/base/generator",
+    baseUrl: "/generator",
     tableId: "generatorTable",
     toolbarId: "toolbar",
     unique: "id",
@@ -99,7 +99,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
             for(var i=0;i<generator.currentItems.length;i++){
                 tableNames.push(generator.currentItems[i].tableName);
             }
-            location.href = "/base/generator/code?tables=" + JSON.stringify(tableNames);
+            location.href = "/generator/code?tables=" + JSON.stringify(tableNames);
         }
     });
 });

@@ -22,7 +22,7 @@ import java.util.Map;
  * @date 2019年05月08日
  */
 @Controller
-@RequestMapping("/base/generator")
+@RequestMapping("/generator")
 public class GeneratorRest {
 
     @Autowired
