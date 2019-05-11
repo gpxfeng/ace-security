@@ -46,12 +46,14 @@ public class UserController extends BaseController<UserBiz,User> {
     @RequestMapping(value = "/front/menus", method = RequestMethod.GET)
     public @ResponseBody
     List<MenuTree> getMenusByUsername(String token) throws Exception {
-        return permissionService.getMenusByUsername(token);
+        List<MenuTree> menusByUsername = permissionService.getMenusByUsername(token);
+        return menusByUsername;
     }
 
     @RequestMapping(value = "/front/menu/all", method = RequestMethod.GET)
     public @ResponseBody
     List<Menu> getAllMenus() throws Exception {
-        return menuBiz.selectListAll();
+        List<Menu> menus = menuBiz.selectListAll();
+        return menus;
     }
 }

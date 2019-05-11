@@ -1,9 +1,20 @@
 把List<String>里的所有元素变成一个字符串  StringUtils.join(string1.toArray(), ","）
 
-webmagic的xpath不支持last（）函数
+webmagic的xpath不支持last（）函数,使用jsoup
 
 options.setExperimentalOption("excludeSwitches",new String[]{"enable-automation"});//开发者模式，跳过反爬
 输入window.navigator.webdriver 结果为true，判定为机器人
+使用定时任务跑Chromedriver，需要关闭进程，否则第五个就报错
+ ChromeDriverService service = new ChromeDriverService.Builder().usingDriverExecutable(new File(CHROMEDRIVERPATH)).usingAnyFreePort().build();
+            try {
+                service.start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+ webDriver.quit();
+ service.stop();
+
+
 
 recaptcha 验证  谷歌验证码  破解方式.....   反爬措施:  限制ip 验证码、滑动验证等
 

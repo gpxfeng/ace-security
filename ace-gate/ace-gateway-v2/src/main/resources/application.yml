@@ -68,6 +68,13 @@ spring:
         - Path=/api/admin/**
         filters:
         - StripPrefix=2
+      - id: ace-generator
+        uri: lb://ace-generator
+        order: 8002
+        predicates:
+        - Path=/api/generator/**
+        filters:
+        - StripPrefix=2
 
 logging:
   level:
