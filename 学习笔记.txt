@@ -1,4 +1,4 @@
-把List<String>里的所有元素变成一个字符串  StringUtils.join(string1.toArray(), ","）
+把List<String>里的所有元素变成一个字符串  StringUtils.join(string1.toArray(), ",")
 
 webmagic的xpath不支持last（）函数,使用jsoup
 
@@ -15,6 +15,11 @@ options.setExperimentalOption("excludeSwitches",new String[]{"enable-automation"
  service.stop();
 
 
+
+ web.xml里的servlet-mapping下的url-pattern，控制了springMVC的url请求后缀
+
+FFMPEG是特别强大的专门用于处理音视频的开源库。你既可以使用它的API对音视频进行处理，也可以使用它提供的工具，如 ffmpeg, ffplay, ffprobe，来编辑你的音视频文件
+可用作视频下载，格式转换，转码率等操作 VLC media player可以用作开发，PotPlayer日常使用
 
 recaptcha 验证  谷歌验证码  破解方式.....   反爬措施:  限制ip 验证码、滑动验证等
 
@@ -121,6 +126,29 @@ ace-tool         搜索系统，用的是lucene，ik分词器，对象存储:OSS
 ace-sidebar--------------调用第三方语言
 ace-sidebar-client-demo   调用Python  web程序 需先安装
 ace-sidebar-server        远程调用，需封装上面的模块
+
+
+vue封装axios js文件位置 utils/fetch.js
+
+BCrypt.hashpw(password, BCrypt.gensalt())   BCrypt加密，后面的参数是所说的加盐    checkpw()是比对，一样返回true
+
+项目登录，先进src/main getToken,从ciookie中查看，没有就进入登录
+登录提交admin  方法为loginByEmail，在login.js中定义路径，
+访问后台auth模块AuthController/token,调用admin模块rpc下的userRest/的validate,加密前端的密码比对后端,返回生成的token。
+在user.js中定义了loginByEmail,登录完token存在cookies
+loginByEmail登录完毕push到首页,中间先进main.js判断token,有了再判断列表
+触发user.js中的getInfo,getMenus,获取用户信息和功能列表
+AG-Admin-v2.0中的axios拦截器 名字为fetch.js,
+vue+elementUI做的登录系统除了单点登录代码都一个样,具体可看 https://juejin.im/post/591aa14f570c35006961acac
+
+
+
+
+
+
+
+
+
 
 
 
