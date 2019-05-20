@@ -52,6 +52,7 @@ public class PermissionService {
     public UserInfo validate(String username,String password){
         UserInfo info = new UserInfo();
         User user = userBiz.getUserByUsername(username);
+        //在这里将密码加密，比对数据库的密码 encoder.matches 赋值给info
         if (encoder.matches(password, user.getPassword())) {
             BeanUtils.copyProperties(user, info);
             info.setId(user.getId().toString());

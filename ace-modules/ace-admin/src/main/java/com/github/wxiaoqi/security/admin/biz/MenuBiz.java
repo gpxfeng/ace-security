@@ -58,11 +58,11 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
 
     /**
      * 获取用户可以访问的菜单
-     *
+     *如果根据id缓存列表，id永远不变，redis没有设置规则，列表永远不能更新
      * @param id
      * @return
      */
-    @Cache(key = "permission:menu:u{1}")
+    //@Cache(key = "permission:menu:u{1}")
     public List<Menu> getUserAuthorityMenuByUserId(int id) {
         return mapper.selectAuthorityMenuByUserId(id);
     }
