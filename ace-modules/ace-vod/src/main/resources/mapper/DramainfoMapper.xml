@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.vod.mapper.DramainfoMapper">
+
+	<insert id="addDramainfo" parameterType="com.cloud.vod.entity.Dramainfo" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `dramainfo`
+		(`name`,`enable`,`imageurl`,`cateid`,`createtime`,`updatetime`,`type`,`filepath`,`duration`,`director`,`actors`,`rdate`,`description`)
+			VALUE
+		(#{name},#{enable},#{imageurl},#{cateid},#{createtime},#{updatetime},#{type},#{filepath},#{duration},#{director},#{actors},#{rdate},#{description})
+	</insert>
+
+	<select id="findDramainfoByName" parameterType="map" resultType="com.cloud.vod.entity.Dramainfo">
+		select * from dramainfo where type=#{type} and name=#{name}
+	</select>
+
+	<select id="findDramainfoPresence" parameterType="com.cloud.vod.entity.Dramainfo" resultType="com.cloud.vod.entity.Dramainfo">
+		select * from dramainfo where type=#{type} and name=#{name}
+	</select>
+
+	<!-- 查询新增影片信息id -->
+	<select id="findDramainfoId" parameterType="com.cloud.vod.entity.Dramainfo" resultType="int">
+		select id from dramainfo where type=#{type} and createtime=#{createtime} and name=#{name}
+	</select>
+
+	<update id="updateDramainfo" parameterType="int">
+		update dramainfo set cateid=85 where type=1 and id=#{id}
+	</update>
+</mapper>

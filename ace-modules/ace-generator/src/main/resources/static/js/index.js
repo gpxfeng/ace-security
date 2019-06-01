@@ -42,8 +42,8 @@ layui.config({
         elem: '#admin-navbar-side',
         cached: true,
         //data: navs
-		cached:false,
-		url: '/datas/nav.json'
+        cached: false,
+        url: '/datas/nav.json'
     });
     //渲染navbar
     navbar.render();
@@ -62,7 +62,7 @@ layui.config({
     //清除缓存
     $('#clearCached').on('click', function () {
         navbar.cleanCached();
-        layer.alert('清除完成!', { icon: 1, title: '系统提示' }, function () {
+        layer.alert('清除完成!', {icon: 1, title: '系统提示'}, function () {
             location.reload();//刷新
         });
     });
@@ -159,6 +159,7 @@ layui.config({
 //    });
 //}
 var isShowLock = false;
+
 function lock($, layer) {
     if (isShowLock)
         return;
@@ -212,22 +213,22 @@ function lock($, layer) {
                 }
                 unlock(userName, pwd);
             });
-			/**
-			 * 解锁操作方法
-			 * @param {String} 用户名
-			 * @param {String} 密码
-			 */
+            /**
+             * 解锁操作方法
+             * @param {String} 用户名
+             * @param {String} 密码
+             */
             var unlock = function (un, pwd) {
                 console.log(un, pwd);
                 //这里可以使用ajax方法解锁
-                $.post('/Account/UnLock', { userName: un, password: pwd }, function (res) {
+                $.post('/Account/UnLock', {userName: un, password: pwd}, function (res) {
                     //验证成功
                     if (res.rel) {
                         //关闭锁屏层
                         layer.close(lockIndex);
                         isShowLock = false;
                     } else {
-                        layer.msg(res.msg, { icon: 2, time: 1000 });
+                        layer.msg(res.msg, {icon: 2, time: 1000});
                     }
                 }, 'json');
                 //isShowLock = false;

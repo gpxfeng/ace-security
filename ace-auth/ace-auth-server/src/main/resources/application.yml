@@ -44,7 +44,7 @@ spring:
           enabled: true
 
 mybatis:
-    basepackage: com.github.wxiaoqi.security.auth.mapper
+    basepackage: com.cloud.auth.mapper
     xmlLocation: classpath:mapper/**/*.xml
     mapper-locations: "classpath*:mapper/*.xml"
 
@@ -109,4 +109,4 @@ client:
 logging:
     level:
 #        tk.mybatis: DEBUG
-        com.github.wxiaoqi.security.auth: DEBUG
+        com.cloud.auth: DEBUG

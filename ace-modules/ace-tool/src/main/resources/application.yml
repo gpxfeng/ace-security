@@ -1,23 +1,23 @@
 logging:
-    level:
-#        tk.mybatis: DEBUG
-        com.github.wxiaoqi: DEBUG
+  level:
+    #        tk.mybatis: DEBUG
+    com.cloud.tool: DEBUG
 server:
-    port: 9992
+  port: 9992
 
 spring:
-    profiles:
-      active: dev
-    application:
-        name: ace-tool
-    rabbitmq:
-      host: ${RABBIT_MQ_HOST:localhost}
-      port:  ${RABBIT_MQ_PORT:5672}
-      username: guest
-      password: guest
-    sleuth:
-        sampler:
-            percentage: 1
+  profiles:
+    active: dev
+  application:
+    name: ace-tool
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
+    port:  ${RABBIT_MQ_PORT:5672}
+    username: guest
+    password: guest
+  sleuth:
+    sampler:
+      percentage: 1
 
 search:
   lucence:

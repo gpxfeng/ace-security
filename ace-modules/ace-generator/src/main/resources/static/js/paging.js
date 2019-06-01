@@ -18,7 +18,7 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
             type: 'POST', //数据的获取方式  get or post
             elem: undefined, //内容容器
             params: {}, //获取数据时传递的额外参数
-            openWait: false, //加载数据时是否显示等待框 
+            openWait: false, //加载数据时是否显示等待框
             tempElem: undefined, //模板容器
             tempType: 0, //如果等于0则需要设置模板容器，1为提供模板内容
             paged: true,//是否显示分页组件
@@ -37,24 +37,24 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
             }
         };
     };
-	/**
-	 * 版本号
-	 */
+    /**
+     * 版本号
+     */
     Paging.prototype.v = '1.0.3';
 
-	/**
-	 * 设置
-	 * @param {Object} options
-	 */
+    /**
+     * 设置
+     * @param {Object} options
+     */
     Paging.prototype.set = function (options) {
         var that = this;
         $.extend(true, that.config, options);
         return that;
     };
-	/**
-	 * 初始化
-	 * @param {Object} options
-	 */
+    /**
+     * 初始化
+     * @param {Object} options
+     */
     Paging.prototype.init = function (options) {
         var that = this;
         $.extend(true, that.config, options);
@@ -92,10 +92,10 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
 
         return that;
     };
-	/**
-	 * 获取数据
-	 * @param {Object} options
-	 */
+    /**
+     * 获取数据
+     * @param {Object} options
+     */
     Paging.prototype.get = function (options) {
         var that = this;
         var _config = that.config;
@@ -126,8 +126,7 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
                             _config.renderBefore(html, function (formatHtml) {
                                 $(_config.elem).html(formatHtml);
                             }, result.list);
-                        }
-                        else {
+                        } else {
                             $(_config.elem).html(html);
                         }
                     });
@@ -179,10 +178,11 @@ layui.define(['layer', 'laypage', 'laytpl'], function (exports) {
             }
         });
     };
-	/**
-	 * 抛出一个异常错误信息
-	 * @param {String} msg
-	 */
+
+    /**
+     * 抛出一个异常错误信息
+     * @param {String} msg
+     */
     function throwError(msg) {
         throw new Error(msg);
     };

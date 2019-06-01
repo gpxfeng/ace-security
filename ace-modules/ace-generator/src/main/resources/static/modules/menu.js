@@ -1,4 +1,3 @@
-
 /*
  * smartMenu.js 智能上下文菜单插件
  * http://www.zhangxinxu.com/
@@ -33,11 +32,12 @@ layui.define(function (exports) {
             var params = $.extend(defaults, options || {});
 
             var htmlCreateMenu = function (datum) {
-                var dataMenu = datum || data, nameMenu = datum ? Math.random().toString() : params.name, htmlMenu = "", htmlCorner = "", clKey = "smart_menu_";
+                var dataMenu = datum || data, nameMenu = datum ? Math.random().toString() : params.name, htmlMenu = "",
+                    htmlCorner = "", clKey = "smart_menu_";
                 if ($.isArray(dataMenu) && dataMenu.length) {
                     htmlMenu = '<div id="smartMenu_' + nameMenu + '" class="' + clKey + 'box">' +
-                    '<div class="' + clKey + 'body">' +
-                    '<ul class="' + clKey + 'ul">';
+                        '<div class="' + clKey + 'body">' +
+                        '<ul class="' + clKey + 'ul">';
 
                     $.each(dataMenu, function (i, arr) {
                         if (i) {
@@ -45,7 +45,8 @@ layui.define(function (exports) {
                         }
                         if ($.isArray(arr)) {
                             $.each(arr, function (j, obj) {
-                                var text = obj.text, name = obj.name, icon = obj.icon || '', htmlMenuLi = "", strTitle = "", rand = Math.random().toString().replace(".", "");
+                                var text = obj.text, name = obj.name, icon = obj.icon || '', htmlMenuLi = "",
+                                    strTitle = "", rand = Math.random().toString().replace(".", "");
                                 if (icon) {
                                     icon += '&nbsp;';
                                 }
@@ -56,12 +57,12 @@ layui.define(function (exports) {
                                     }
                                     if ($.isArray(obj.child) && obj.child.length) {
                                         htmlMenuLi = '<li class="layui-icon ' + clKey + 'li" data-hover="true">' + htmlCreateMenu(obj.child) +
-                                        '<a href="javascript:" class="' + clKey + 'a"' + strTitle + ' data-name="' + name + '" data-key="' + rand + '"><i class="' + clKey + 'triangle"></i>' + icon + text + '</a>' +
-                                        '</li>';
+                                            '<a href="javascript:" class="' + clKey + 'a"' + strTitle + ' data-name="' + name + '" data-key="' + rand + '"><i class="' + clKey + 'triangle"></i>' + icon + text + '</a>' +
+                                            '</li>';
                                     } else {
                                         htmlMenuLi = '<li class="layui-icon ' + clKey + 'li">' +
-                                        '<a href="javascript:" class="' + clKey + 'a"' + strTitle + ' data-name="' + name + '" data-key="' + rand + '">' + icon + text + '</a>' +
-                                        '</li>';
+                                            '<a href="javascript:" class="' + clKey + 'a"' + strTitle + ' data-name="' + name + '" data-key="' + rand + '">' + icon + text + '</a>' +
+                                            '</li>';
                                     }
 
                                     htmlMenu += htmlMenuLi;
@@ -75,8 +76,8 @@ layui.define(function (exports) {
                     });
 
                     htmlMenu = htmlMenu + '</ul>' +
-                    '</div>' +
-                    '</div>';
+                        '</div>' +
+                        '</div>';
                 }
                 return htmlMenu;
             }, funSmartMenu = function () {
@@ -195,10 +196,12 @@ layui.define(function (exports) {
         }
         return this;
     };
+
     //点击菜单回调
     function menuclick_callback(othis, name) {
         call.menuclick ? call.menuclick[0](othis, name) : '';
     }
+
     //配置
     function config(options) {
         $.extend(items, options);
@@ -214,7 +217,7 @@ layui.define(function (exports) {
         var data = [];
         var groups = [];
         var prapare = {};
-        var defaultItem = { group: 'default', icon: '', func: menuclick_callback };
+        var defaultItem = {group: 'default', icon: '', func: menuclick_callback};
         layui.each(item.items, function (i) {
             $.extend(item.items[i], defaultItem);
             var itemDetail = item.items[i];
@@ -257,7 +260,7 @@ layui.define(function (exports) {
             });
         }
         menuData.push({
-            id:item.id,
+            id: item.id,
             ele: item.ele,
             data: data
         });

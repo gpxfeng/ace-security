@@ -78,7 +78,7 @@ spring:
 
 logging:
   level:
-    com.github.wxiaoqi.security.gate.v2: info
+    com.cloud.gate.v2: info
 
 management:
   endpoints:

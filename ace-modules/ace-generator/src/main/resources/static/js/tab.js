@@ -21,18 +21,18 @@ layui.define(['element', 'common'], function (exports) {
     var ELEM = {};
     //版本号
     Tab.prototype.v = '0.1.5';
-	/**
-	 * 参数设置
-	 * @param {Object} options
-	 */
+    /**
+     * 参数设置
+     * @param {Object} options
+     */
     Tab.prototype.set = function (options) {
         var that = this;
         $.extend(true, that.config, options);
         return that;
     };
-	/**
-	 * 初始化
-	 */
+    /**
+     * 初始化
+     */
     Tab.prototype.init = function () {
         var that = this;
         var _config = that.config;
@@ -59,10 +59,10 @@ layui.define(['element', 'common'], function (exports) {
         ELEM.tabFilter = filter;
         return that;
     };
-	/**
-	 * 查询tab是否存在，如果存在则返回索引值，不存在返回-1
-	 * @param {String} 标题
-	 */
+    /**
+     * 查询tab是否存在，如果存在则返回索引值，不存在返回-1
+     * @param {String} 标题
+     */
     Tab.prototype.exists = function (title) {
         var that = ELEM.titleBox === undefined ? this.init() : this,
             tabIndex = -1;
@@ -70,14 +70,15 @@ layui.define(['element', 'common'], function (exports) {
             var $cite = $(this).children('cite');
             if ($cite.text() === title) {
                 tabIndex = i;
-            };
+            }
+            ;
         });
         return tabIndex;
     };
-	/**
-	 * 获取tabid
-	 * @param {String} 标题
-	 */
+    /**
+     * 获取tabid
+     * @param {String} 标题
+     */
     Tab.prototype.getTabId = function (title) {
         var that = ELEM.titleBox === undefined ? this.init() : this,
             tabId = -1;
@@ -85,14 +86,15 @@ layui.define(['element', 'common'], function (exports) {
             var $cite = $(this).children('cite');
             if ($cite.text() === title) {
                 tabId = $(this).attr('lay-id');
-            };
+            }
+            ;
         });
         return tabId;
     };
-	/**
-	 * 添加选择卡，如果选择卡存在则获取焦点
-	 * @param {Object} data
-	 */
+    /**
+     * 添加选择卡，如果选择卡存在则获取焦点
+     * @param {Object} data
+     */
     Tab.prototype.tabAdd = function (data) {
         var that = this;
         var _config = that.config;
@@ -152,7 +154,8 @@ layui.define(['element', 'common'], function (exports) {
                         $(document).find('div.uiba-contextmenu').remove(); //移除右键菜单dom
                     }
                 });
-            };
+            }
+            ;
             //切换到当前打开的选项卡
             element.tabChange(ELEM.tabFilter, that.getTabId(data.title));
 
@@ -267,17 +270,17 @@ layui.define(['element', 'common'], function (exports) {
         }
     };
     /**
-	 * 获取当前获得焦点的tabid
-	 */
+     * 获取当前获得焦点的tabid
+     */
     Tab.prototype.getCurrentTabId = function () {
         var that = this;
         var _config = that.config;
         return $(_config.elem).find('ul.layui-tab-title').children('li.layui-this').attr('lay-id');
     }
     /**
-	 * 删除指定的tab选项卡
-	 * @param {String} id
-	 */
+     * 删除指定的tab选项卡
+     * @param {String} id
+     */
     Tab.prototype.deleteTab = function (id) {
         var that = this;
         element.tabDelete(ELEM.tabFilter, id);

@@ -11,6 +11,7 @@ options.setExperimentalOption("excludeSwitches",new String[]{"enable-automation"
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
  webDriver.quit();
  service.stop();
 
@@ -38,6 +39,8 @@ recaptcha 验证  谷歌验证码  破解方式.....   反爬措施:  限制ip �
 10.求职要自信
 11.要学会沟通，要一直学习
 
+
+redis设置win开机自启动，进入文件夹设置配置文件：redis-server –service-install redis.windows.conf
 
 centos重启 reboot
 
@@ -97,7 +100,7 @@ ace-center 注册中心
 
 
 ace-auth-------------服务鉴权中心   下面3个模块
-ace-auth-client   接口中心？
+ace-auth-client   接口中心？ jwt学习
 ace-auth-common   服务鉴权工具类？
 ace-auth-server   登录服务入口？
 
@@ -111,13 +114,13 @@ ace-trace       只有一个启动类和配置文件，zipkin  分布式跟踪�
 
 
 ace-gate-------------网关负载中心zuul   下面3个模块
-ace-gate-ratelimit    配置内容？拦截器内容？
+ace-gate-ratelimit    配置内容？拦截器内容？基于令牌桶算法的实现类，可以非常简单的完成限流特技
 ace-gate-zuul    feign通信服务配置？网关设置？
 ace-gateway-v2    上面模块的简约配置，只用来登录？
 
 
 ace-modules------------- 公共服务模块（基础系统、搜索、OSS） 下面4个子模块
-ace-admin       基础系统，登录模块？
+ace-admin       基础系统，登录模块
 ace-generator    代码生成工具
 ace-interface      接口，类似dto一样的东西
 ace-tool         搜索系统，用的是lucene，ik分词器，对象存储:OSS,云存储
@@ -142,29 +145,77 @@ AG-Admin-v2.0中的axios拦截器 名字为fetch.js,
 vue+elementUI做的登录系统除了单点登录代码都一个样,具体可看 https://juejin.im/post/591aa14f570c35006961acac
 
 
+ace-vod是新加进来的爬虫模块，出现bean加载异常，无法解决，等老子变叼了再说吧
+
+
+
+在entry转化为dto时，如果字段太多，并且需要全部转化时，应该使用支持浅拷贝或深拷贝的 Utils
+文章链接https://juejin.im/post/5ce7e78d518825064000531a  工具链接https://blog.csdn.net/qq_23146763/article/details/82586033
+深拷贝不仅拷贝对象本身，而且拷贝对象包含的引用指向的所有对象。浅拷贝就只拷贝对象属性，对象中的基本变量，引用地址不拷贝
+这样就少写了全部的get，set方法
+@RequestMapping("/v1/api/user")
+@RestController
+public class UserApi {
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping
+    public User addUser(UserInputDTO userInputDTO){
+        User user = new User();
+        user.setUsername(userInputDTO.getUsername());
+        user.setAge(userInputDTO.getAge());
+
+        return userService.addUser(user);
+    }
+}
+变成了下面这样
+@PostMapping
+ public User addUser(UserInputDTO userInputDTO){
+         User user = convertFor(userInputDTO);
+
+         return userService.addUser(user);
+ }
+
+ private User convertFor(UserInputDTO userInputDTO){
+
+         User user = new User();
+         BeanUtils.copyProperties(userInputDTO,user);
+         return user;
+ }
+后续还可以抽取抽象接口，做好泛型。
+public interface DTOConvert<S,T> {
+    T convert(S s);
+}
+
+
+java9模块化的概念使得JAXB默认没有加载；
+jaxb-api是存在jdk中的，手动引入
+
+java1.9以后,sun.misc.BASE64Decoder和sun.misc.BASE64Encoder不可用
+换成java.util.Base64.Decoder和java.util.Base64.Encoder
+代码  Base64.getEncoder().encodeToString(b)
+     Base64.getDecoder().decode(s)
+
+
+
+怎么为项目添加apt许可证
 
 
 
 
 
 
+lvs、haproxy、nginx 负载均衡的比较分析   https://blog.csdn.net/gzh0222/article/details/8540604
 
 
 
+用到了 feign, 要加 spring-boot-starter-web 依赖,
+编译不报错 启动报错,单例bean注入失败
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+多进程单线程和多线程单进程有何优点，有何缺点 
 
 
 

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>ace-auth</artifactId>
-        <groupId>com.github.wxiaoqi</groupId>
+        <groupId>com.cloud</groupId>
         <version>2.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -37,11 +37,6 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-sleuth-zipkin</artifactId>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-sleuth-zipkin</artifactId>
@@ -50,6 +45,16 @@
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>objenesis</artifactId>
+                    <groupId>org.objenesis</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -86,6 +91,12 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.3</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mybatis-spring-boot-starter</artifactId>
+                    <groupId>org.mybatis.spring.boot</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- 数据库驱动 -->
@@ -107,25 +118,29 @@
 
 
         <dependency>
-            <groupId>com.github.wxiaoqi</groupId>
+            <groupId>com.cloud</groupId>
             <artifactId>ace-interface</artifactId>
             <version>2.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
-            <groupId>com.github.wxiaoqi</groupId>
+            <groupId>com.cloud</groupId>
             <artifactId>ace-common</artifactId>
             <version>2.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>pagehelper</artifactId>
+                    <groupId>com.github.pagehelper</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>mapper</artifactId>
+                    <groupId>tk.mybatis</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
-            <groupId>com.github.wxiaoqi</groupId>
-            <artifactId>ace-auth-common</artifactId>
-            <version>2.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.wxiaoqi</groupId>
+            <groupId>com.cloud</groupId>
             <artifactId>ace-auth-common</artifactId>
             <version>2.0-SNAPSHOT</version>
         </dependency>
@@ -138,38 +153,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <!--<plugin>-->
-                <!--<groupId>com.spotify</groupId>-->
-                <!--<artifactId>docker-maven-plugin</artifactId>-->
-                <!--<version>${docker.plugin.version}</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<phase>package</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>build</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-                <!--<configuration>-->
-                    <!--<imageName>${docker.image.prefix}/${project.build.finalName}</imageName>-->
-                    <!--<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>-->
-                    <!--<resources>-->
-                        <!--<resource>-->
-                            <!--<targetPath>/</targetPath>-->
-                            <!--<directory>${project.build.directory}</directory>-->
-                            <!--<include>${project.build.finalName}.jar</include>-->
-                        <!--</resource>-->
-                    <!--</resources>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
             </plugin>
         </plugins>
     </build>

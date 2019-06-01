@@ -1,0 +1,44 @@
+server:
+  port: 8778
+
+eureka:
+  client:
+    serviceUrl:
+      #            defaultZone: http://localhost:8761/eureka/
+      #            docker 部署开启
+      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+# mysql
+spring:
+  application:
+    name: ace-vod
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/videocms?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+#视图层控制
+  mvc:
+    view:
+      prefix: classpath:/templates/
+
+
+# Mybatis配置
+mybatis:
+  xmlLocation: classpath:mybatis-config.xml
+  mapper-locations: "classpath*:mapper/*.xml"
+
+logging:
+  level:
+    #        tk.mybatis: DEBUG
+    com.cloud.vod: DEBUG
+
+
+

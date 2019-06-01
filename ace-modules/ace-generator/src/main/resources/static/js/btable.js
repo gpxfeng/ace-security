@@ -10,7 +10,7 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
         form = layui.form();
 
     var BTable = function () {
-		//默认配置 
+        //默认配置 
         this.config = {
             elem: undefined, //容器
             params: {},//发送到服务端的额外参数
@@ -28,18 +28,18 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
         };
         this.v = '1.0.1';
     };
-	/**
-	 * 配置BTable
-	 * @param {Object} options
-	 */
+    /**
+     * 配置BTable
+     * @param {Object} options
+     */
     BTable.prototype.set = function (options) {
         var that = this;
         $.extend(true, that.config, options);
         return that;
     };
-	/**
-	 * 渲染table
-	 */
+    /**
+     * 渲染table
+     */
     BTable.prototype.render = function () {
         var that = this;
         var _config = that.config;
@@ -210,15 +210,15 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
         });
         return that;
     };
-	/**
-	 * get方法，一般用到添加额外的条件时用到，比如搜索功能
-	 */
+    /**
+     * get方法，一般用到添加额外的条件时用到，比如搜索功能
+     */
     BTable.prototype.get = function (options) {
         paging.get(options);
     };
-	/**
-	 * 获取选择的行。
-	 */
+    /**
+     * 获取选择的行。
+     */
     BTable.prototype.getSelected = function (callback) {
         var that = this;
         var _config = that.config;
@@ -238,8 +238,8 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
         return that;
     };
     /**
-	 * 是否有选中的行
-	 */
+     * 是否有选中的行
+     */
     BTable.prototype.isSelected = function () {
         var that = this;
         var _config = that.config;
@@ -256,9 +256,9 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
         });
         return flag;
     };
-	/**
-	 * 获取选择的所有行数据
-	 */
+    /**
+     * 获取选择的所有行数据
+     */
     BTable.prototype.getSelections = function (callback) {
         var that = this;
         var _config = that.config;
@@ -282,10 +282,10 @@ layui.define(['element', 'common', 'paging', 'form'], function (exports) {
         });
     };
 
-	/**
-	 * 获取模板
-	 * @param {Object} options
-	 */
+    /**
+     * 获取模板
+     * @param {Object} options
+     */
     function getTpl(options) {
         var columns = options.columns;
         var tpl = '{{# if(d.list.length>0 && d.list!=undefined){ }}';

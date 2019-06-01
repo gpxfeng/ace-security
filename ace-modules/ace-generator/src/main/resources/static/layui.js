@@ -41,7 +41,7 @@
         function s(e, t) {
             var n = "PLaySTATION 3" === navigator.platform ? /^complete$/ : /^(complete|loaded)$/;
             ("load" === e.type || n.test((e.currentTarget || e.srcElement).readyState)) && (o.modules[m] = t, y.removeChild(p), function i() {
-                return ++v > 1e3 * o.timeout / 4 ? r(m + " is not a valid module") : void(o.status[m] ? c() : setTimeout(i, 4))
+                return ++v > 1e3 * o.timeout / 4 ? r(m + " is not a valid module") : void (o.status[m] ? c() : setTimeout(i, 4))
             }())
         }
 
@@ -54,13 +54,13 @@
             "jquery" === n && e.splice(t, 1)
         }), layui.jquery = jQuery);
         var m = e[0], v = 0;
-        if (u = u || [], o.host = o.host || (d.match(/\/\/([\s\S]+?)\//) || ["//" + location.host + "/"])[0], 0 === e.length || layui["layui.all"] && a[m] || !layui["layui.all"] && layui["layui.mobile"] && a[m])return c(), f;
+        if (u = u || [], o.host = o.host || (d.match(/\/\/([\s\S]+?)\//) || ["//" + location.host + "/"])[0], 0 === e.length || layui["layui.all"] && a[m] || !layui["layui.all"] && layui["layui.mobile"] && a[m]) return c(), f;
         var p = n.createElement("script"), h = (a[m] ? d + "lay/" : o.base || "") + (f.modules[m] || m) + ".js";
         return p.async = !0, p.charset = "utf-8", p.src = h + function () {
-                var e = o.version === !0 ? o.v || (new Date).getTime() : o.version || "";
-                return e ? "?v=" + e : ""
-            }(), o.modules[m] ? !function g() {
-            return ++v > 1e3 * o.timeout / 4 ? r(m + " is not a valid module") : void("string" == typeof o.modules[m] && o.status[m] ? c() : setTimeout(g, 4))
+            var e = o.version === !0 ? o.v || (new Date).getTime() : o.version || "";
+            return e ? "?v=" + e : ""
+        }(), o.modules[m] ? !function g() {
+            return ++v > 1e3 * o.timeout / 4 ? r(m + " is not a valid module") : void ("string" == typeof o.modules[m] && o.status[m] ? c() : setTimeout(g, 4))
         }() : (y.appendChild(p), !p.attachEvent || p.attachEvent.toString && p.attachEvent.toString().indexOf("[native code") < 0 || l ? p.addEventListener("load", function (e) {
             s(e, h)
         }, !1) : p.attachEvent("onreadystatechange", function (e) {
@@ -74,7 +74,7 @@
         "string" == typeof t && (i = t);
         var s = (i || e).replace(/\.|\//g, ""), c = a.id = "layuicss-" + s, f = 0;
         a.rel = "stylesheet", a.href = e + (o.debug ? "?v=" + (new Date).getTime() : ""), a.media = "all", n.getElementById(c) || u.appendChild(a), "function" == typeof t && !function d() {
-            return ++f > 1e3 * o.timeout / 100 ? r(e + " timeout") : void(1989 === parseInt(l.getStyle(n.getElementById(c), "width")) ? function () {
+            return ++f > 1e3 * o.timeout / 100 ? r(e + " timeout") : void (1989 === parseInt(l.getStyle(n.getElementById(c), "width")) ? function () {
                 t()
             }() : setTimeout(d, 100))
         }()
@@ -84,30 +84,30 @@
         var o = new Image;
         return o.src = e, o.complete ? t(o) : (o.onload = function () {
             o.onload = null, t(o)
-        }, void(o.onerror = function (e) {
+        }, void (o.onerror = function (e) {
             o.onerror = null, n(e)
         }))
     }, t.fn.config = function (e) {
         e = e || {};
-        for (var t in e)o[t] = e[t];
+        for (var t in e) o[t] = e[t];
         return this
     }, t.fn.modules = function () {
         var e = {};
-        for (var t in a)e[t] = a[t];
+        for (var t in a) e[t] = a[t];
         return e
     }(), t.fn.extend = function (e) {
         var t = this;
         e = e || {};
-        for (var n in e)t[n] || t.modules[n] ? r("模块名 " + n + " 已被占用") : t.modules[n] = e[n];
+        for (var n in e) t[n] || t.modules[n] ? r("模块名 " + n + " 已被占用") : t.modules[n] = e[n];
         return t
     }, t.fn.router = function (e) {
-        for (var t, n = (e || location.hash).replace(/^#/, "").split("/") || [], o = {dir: []}, i = 0; i < n.length; i++)t = n[i].split("="), /^\w+=/.test(n[i]) ? function () {
+        for (var t, n = (e || location.hash).replace(/^#/, "").split("/") || [], o = {dir: []}, i = 0; i < n.length; i++) t = n[i].split("="), /^\w+=/.test(n[i]) ? function () {
             "dir" !== t[0] && (o[t[0]] = t[1])
         }() : o.dir.push(n[i]), t = null;
         return o
     }, t.fn.data = function (t, n) {
         if (t = t || "layui", e.JSON && e.JSON.parse) {
-            if (null === n)return delete localStorage[t];
+            if (null === n) return delete localStorage[t];
             n = "object" == typeof n ? n : {key: n};
             try {
                 var o = JSON.parse(localStorage[t])
@@ -132,20 +132,21 @@
         return {error: r}
     }, t.fn.each = function (e, t) {
         var n, o = this;
-        if ("function" != typeof t)return o;
+        if ("function" != typeof t) return o;
         if (e = e || [], e.constructor === Object) {
-            for (n in e)if (t.call(e[n], n, e[n]))break
-        } else for (n = 0; n < e.length && !t.call(e[n], n, e[n]); n++);
+            for (n in e) if (t.call(e[n], n, e[n])) break
+        } else for (n = 0; n < e.length && !t.call(e[n], n, e[n]); n++) ;
         return o
     }, t.fn.stope = function (t) {
         t = t || e.event, t.stopPropagation ? t.stopPropagation() : t.cancelBubble = !0
     }, t.fn.onevent = function (e, t, n) {
         return "string" != typeof e || "function" != typeof n ? this : (o.event[e + "." + t] = [n], this)
     }, t.fn.event = function (e, t, n) {
-        var i = this, r = null, l = t.match(/\(.*\)$/) || [], a = (t = e + "." + t).replace(l, ""), u = function (e, t) {
-            var o = t && t.call(i, n);
-            o === !1 && null === r && (r = !1)
-        };
+        var i = this, r = null, l = t.match(/\(.*\)$/) || [], a = (t = e + "." + t).replace(l, ""),
+            u = function (e, t) {
+                var o = t && t.call(i, n);
+                o === !1 && null === r && (r = !1)
+            };
         return layui.each(o.event[a], u), l[0] && layui.each(o.event[t], u), r
     }, e.layui = new t
 }(window);

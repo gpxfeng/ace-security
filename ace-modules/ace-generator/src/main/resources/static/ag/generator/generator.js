@@ -60,7 +60,7 @@ generator.init = function () {
         cardView: false, //是否显示详细视图
         detailView: false, //是否显示父子表
         columns: generator.columns(),
-        responseHandler: function(res) {
+        responseHandler: function (res) {
             return {
                 "total": res.data.total,//总页数
                 "rows": res.data.rows   //数据
@@ -70,7 +70,7 @@ generator.init = function () {
 };
 generator.select = function (layerTips) {
     var rows = generator.table.bootstrapTable('getSelections');
-    if (rows.length >0) {
+    if (rows.length > 0) {
         generator.currentItems = rows;
         return true;
     } else {
@@ -93,10 +93,10 @@ layui.use(['form', 'layedit', 'laydate'], function () {
     $('#btn_query').on('click', function () {
         generator.table.bootstrapTable('refresh', generator.queryParams());
     });
-    $('#btn_generate').on('click',function(){
-        if(generator.select()){
+    $('#btn_generate').on('click', function () {
+        if (generator.select()) {
             var tableNames = [];
-            for(var i=0;i<generator.currentItems.length;i++){
+            for (var i = 0; i < generator.currentItems.length; i++) {
                 tableNames.push(generator.currentItems[i].tableName);
             }
             location.href = "/generator/code?tables=" + JSON.stringify(tableNames);

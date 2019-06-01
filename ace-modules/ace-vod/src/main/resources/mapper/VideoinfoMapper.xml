@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.vod.mapper.VideoinfoMapper">
+
+	<insert id="addVideoinfo" parameterType="com.cloud.vod.entity.Videoinfo">
+		INSERT INTO `videoinfo`(`name`,`videourl`,`pageurl`,`imageurl`,`filepath`,`subtitle`,`enable`,`createtime`,`updatetime`,`cateid`,`dramaid`,`type`,`num`,`temp`,`p2purl`,`language`,`quality`)
+		VALUE(#{name},#{videourl},#{pageurl},#{imageurl},#{filepath},#{subtitle},#{enable},#{createtime},#{updatetime},#{cateid},#{dramaid},#{type},#{num},#{temp},#{p2purl},#{language},#{quality})
+	</insert>
+
+	<select id="findVideoinfoCountByPageurl" parameterType="map" resultType="int">
+		SELECT COUNT(1) FROM videoinfo WHERE TYPE=#{type} AND pageurl=#{pageurl}
+	</select>
+
+	<select id="findVideoinfo" parameterType="map" resultType="com.cloud.vod.entity.Videoinfo">
+		SELECT * FROM videoinfo WHERE TYPE=#{type} AND name=#{name} and temp=#{temp} and num=#{num}
+	</select>
+
+	<select id="findVideoinfoByPage" parameterType="map" resultType="com.cloud.vod.entity.Videoinfo">
+		SELECT * FROM videoinfo WHERE TYPE=#{type} AND pageurl=#{pageurl}
+	</select>
+
+	<update id="updateVideoinfo" parameterType="com.cloud.vod.entity.Videoinfo">
+		update videoinfo set cateid=85 where pageurl="thefilmestorrents.com" and id=#{id}
+	</update>
+
+</mapper>

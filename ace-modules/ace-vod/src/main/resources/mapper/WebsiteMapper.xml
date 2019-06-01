@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.vod.mapper.WebsiteMapper">
+
+	<select id="findWebsite" parameterType="map" resultType="com.cloud.vod.entity.Website">
+		SELECT * FROM website where type=#{type} and enable=#{enable}
+	</select>
+
+</mapper>
