@@ -1,9 +1,10 @@
 package com.cloud.vod.utils.force;
 
-import com.VodWebCrawler.cms.model.Dramainfo;
-import com.VodWebCrawler.cms.model.Videoinfo;
-import com.VodWebCrawler.cms.util.HttpRequest;
-import com.VodWebCrawler.cms.util.PropertyConfigUtil;
+
+import com.cloud.vod.entity.Dramainfo;
+import com.cloud.vod.entity.Videoinfo;
+import com.cloud.vod.utils.HttpRequest;
+import com.cloud.vod.utils.PropertyConfigUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
@@ -152,6 +153,7 @@ public class ForceUtil {
 	 */
 	public static ForceVideo saveForceVodVideo(String videoName, int videoType, String mediaUrl) {
 		String[] vod_ftds = propertyConfigUtil.getValue("vod_ftds").split(",");
+		String[] vod_anime_ftds = propertyConfigUtil.getValue("vod_anime_ftds").split(",");
 		String[] series_ftds = propertyConfigUtil.getValue("series_ftds").split(",");
 		String[] anime_ftds = propertyConfigUtil.getValue("anime_ftds").split(",");
 
@@ -159,8 +161,7 @@ public class ForceUtil {
 		if (mediaUrl == null || mediaUrl.length() == 0 || videoName == null || videoName.length() == 0) {
 			return null;
 		}
-
-		Map<String, String> params = new HashMap<String, String>();
+		IdentityHashMap<String, String> params=new IdentityHashMap<String, String>();
 		params.put("cmd", "addchn");
 		params.put("filetype", "auto");
 		params.put("name", videoName);
@@ -171,23 +172,46 @@ public class ForceUtil {
 		params.put("sort", "");
 		params.put("url", "file:///" + mediaUrl);
 
-
 		Random random = new Random();
 		if (videoType==1) {
 		    int num = random.nextInt(vod_ftds.length);
-			params.put("ftdsid", vod_ftds[num]);
+		    int num2= random.nextInt(vod_ftds.length);
+		    while (num==num2) {
+		    	num2=random.nextInt(vod_ftds.length);
+			}
+		    params.put(new String("ftdsid"), vod_ftds[num]);
+			params.put(new String("ftdsid"), vod_ftds[num2]);
 			for (int i = 0; i < vod_ftds.length; i++) {
 			    params.put("ftds_url_" + vod_ftds[i], "");
 			}
+
+			//添加动漫服务器里的vod的ftds,vod服务器和动漫服务器是交叉备份视频的
+		    params.put(new String("ftdsid"), vod_anime_ftds[num]);
+			params.put(new String("ftdsid"), vod_anime_ftds[num2]);
+			for (int i = 0; i < vod_anime_ftds.length; i++) {
+			    params.put("ftds_url_" + vod_anime_ftds[i], "");
+			}
 		}else if (videoType==2) {
 		    int num = random.nextInt(series_ftds.length);
-            params.put("ftdsid", series_ftds[num]);
+		    int num2 = random.nextInt(series_ftds.length);
+		    while (num==num2) {
+		    	num2=random.nextInt(series_ftds.length);
+			}
+
+		    params.put(new String("ftdsid"), series_ftds[num]);
+		    params.put(new String("ftdsid"), series_ftds[num2]);
             for (int i = 0; i < series_ftds.length; i++) {
                 params.put("ftds_url_" + series_ftds[i], "");
             }
 		}else if (videoType==4) {
-		    int num = random.nextInt(anime_ftds.length);
-            params.put("ftdsid", anime_ftds[num]);
+            int num = random.nextInt(anime_ftds.length);
+		    int num2 = random.nextInt(anime_ftds.length);
+		    while (num==num2) {
+		    	num2=random.nextInt(anime_ftds.length);
+			}
+
+		    params.put(new String("ftdsid"), anime_ftds[num]);
+		    params.put(new String("ftdsid"), anime_ftds[num2]);
             for (int i = 0; i < anime_ftds.length; i++) {
                 params.put("ftds_url_" + anime_ftds[i], "");
             }
@@ -234,6 +258,118 @@ public class ForceUtil {
 		}
 
 		return null;
+	}
+
+	public static void updateFtdsid(int videoType, String p2pId) {
+		String[] vod_ftds = propertyConfigUtil.getValue("vod_ftds").split(",");
+		String[] vod_anime_ftds = propertyConfigUtil.getValue("vod_anime_ftds").split(",");
+		String[] series_ftds = propertyConfigUtil.getValue("series_ftds").split(",");
+		String[] anime_ftds = propertyConfigUtil.getValue("anime_ftds").split(",");
+
+		IdentityHashMap<String, String> params=new IdentityHashMap<String, String>();
+		params.put("cmd", "modifychn");
+		params.put("filetype", "auto");
+		params.put("id", p2pId);
+		params.put("ptl", "file");
+		params.put("ptlimpl", "std");
+		params.put("submit", "修改");
+		params.put("vod", "1");
+
+		Random random = new Random();
+		if (videoType==1) {
+			//添加vod服务器里的vod的ftds
+		    int num = random.nextInt(vod_ftds.length);
+		    int num2= random.nextInt(vod_ftds.length);
+		    while (num==num2) {
+		    	num2=random.nextInt(vod_ftds.length);
+			}
+		    params.put(new String("ftdsid"), vod_ftds[num]);
+			params.put(new String("ftdsid"), vod_ftds[num2]);
+			for (int i = 0; i < vod_ftds.length; i++) {
+			    params.put("ftds_url_" + vod_ftds[i], "");
+			}
+
+			//添加动漫服务器里的vod的ftds,vod服务器和动漫服务器是交叉备份视频的
+		    params.put(new String("ftdsid"), vod_anime_ftds[num]);
+			params.put(new String("ftdsid"), vod_anime_ftds[num2]);
+			for (int i = 0; i < vod_anime_ftds.length; i++) {
+			    params.put("ftds_url_" + vod_anime_ftds[i], "");
+			}
+		}else if (videoType==2) {
+		    int num = random.nextInt(series_ftds.length);
+		    int num2 = random.nextInt(series_ftds.length);
+		    while (num==num2) {
+		    	num2=random.nextInt(series_ftds.length);
+			}
+
+		    params.put(new String("ftdsid"), series_ftds[num]);
+		    params.put(new String("ftdsid"), series_ftds[num2]);
+            for (int i = 0; i < series_ftds.length; i++) {
+                params.put("ftds_url_" + series_ftds[i], "");
+            }
+		}else if (videoType==4) {
+            int num = random.nextInt(anime_ftds.length);
+		    int num2 = random.nextInt(anime_ftds.length);
+		    while (num==num2) {
+		    	num2=random.nextInt(anime_ftds.length);
+			}
+
+		    params.put(new String("ftdsid"), anime_ftds[num]);
+		    params.put(new String("ftdsid"), anime_ftds[num2]);
+            for (int i = 0; i < anime_ftds.length; i++) {
+                params.put("ftds_url_" + anime_ftds[i], "");
+            }
+		}
+
+		String forcecmsurl = getForcecmsurl();
+		String respone = "";
+		try {
+			respone = HttpRequest.post(forcecmsurl, params, true).authorization(getAuthorization()).headers(getHeaderMap()).body();
+		} catch (Exception e) {
+			logger.error(e, e);
+		}
+//		logger.info("respone=" + respone);
+	}
+
+
+	public static List<String> checkFtds(String p2pId) {
+		List<String> ftdsList=new ArrayList<>();
+
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("cmd", "getpage");
+		params.put("page", "chninfo");
+		params.put("id", p2pId);
+
+		String forcecmsurl = getForcecmsurl();
+		String respone = "";
+		try {
+			respone = HttpRequest.get(forcecmsurl, params, true).authorization(getAuthorization()).headers(getHeaderMap()).body();
+		} catch (Exception e) {
+			logger.error(e, e);
+		}
+		Document document = null;
+		try {
+			document = DocumentHelper.parseText(respone);
+		} catch (DocumentException e) {
+			logger.error(e, e);
+		}
+		if (document == null) {
+			return ftdsList;
+		}
+
+		Element root = document.getRootElement();
+		List<Element> nodes = root.elements("channel");
+		if (nodes == null || nodes.size() == 0) {
+			return ftdsList;
+		}
+
+		for (Iterator it = nodes.iterator(); it.hasNext();) {
+			Element element = (Element) it.next();
+			String ftdsid = element.attributeValue("ftdsid");
+			ftdsList= Arrays.asList(ftdsid.split(";"));
+		}
+
+		return ftdsList;
 	}
 
 	public static String deleteForceVideo(String id, String name, boolean isVod) {

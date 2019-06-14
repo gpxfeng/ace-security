@@ -1,12 +1,3 @@
-/**
- * Copyright © 2019 eSunny Info. Tech Ltd. All rights reserved.
- *
- * 功能描述：
- * @Package: com.VodWebCrawler.cms.util
- * @author: yuxianfeng
- * @date: 2019年2月28日 上午11:15:48
- */
-
 package com.cloud.vod.utils.Process;
 
 import org.slf4j.Logger;
@@ -17,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 
 /**
  * Copyright: Copyright (c) 2019 LanRu-Caifu

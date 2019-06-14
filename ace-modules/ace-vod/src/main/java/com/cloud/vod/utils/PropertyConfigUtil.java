@@ -1,18 +1,4 @@
-/**
- * Program  : PropertyConfigUtil.java<br/>
- * Author   : Ices<br/>
- * Create   : 2007-7-24 ����10:46:57<br/>
- *
- * Copyright 1997-2006 by Embedded Internet Solutions Inc.,
- * All rights reserved.
- *
- * This software is the confidential and proprietary information
- * of Embedded Internet Solutions Inc.("Confidential Information").
- * You shall not disclose such Confidential Information and shall
- * use it only in accordance with the terms of the license agreement
- * you entered into with Embedded Internet Solutions Inc.
- *
- */
+
 package com.cloud.vod.utils;
 
 import java.io.*;

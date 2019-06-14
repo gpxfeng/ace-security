@@ -17,6 +17,8 @@ public class WebDriverUtil {
 
     public final static String CHROMEDRIVERPATH = PCONFIGUTIL.getValue("chromeDriverPath");
 
+    public final static String userAgent = PCONFIGUTIL.getValue("userAgent");
+
     public static WebDriver GetWebDriver() {
         //模拟浏览器
         System.setProperty("webdriver.chrome.driver", CHROMEDRIVERPATH);//驱动注入
@@ -26,7 +28,7 @@ public class WebDriverUtil {
         options.addArguments("--start-maximized");//启动最大化
         options.addArguments("--test-type", "--ignore-certificate-errors");//置忽略 Chrome 浏览器证书错误报警提示
         //设置头部伪装
-        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36");
+        options.addArguments("user-agent="+userAgent);
         options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);//设置不使用ssl安全协议
         options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);//日志
 

@@ -1,12 +1,3 @@
-/**
- * Copyright © 2019 eSunny Info. Tech Ltd. All rights reserved.
- *
- * 功能描述：
- * @Package: com.VodWebCrawler.cms.util.Process
- * @author: yuxianfeng
- * @date: 2019年2月28日 上午11:35:28
- */
-
 package com.cloud.vod.utils.Process;
 
 import com.sun.jna.Library;

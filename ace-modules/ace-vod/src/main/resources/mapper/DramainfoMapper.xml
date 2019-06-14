@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		INSERT INTO `dramainfo`
 		(`name`,`enable`,`imageurl`,`cateid`,`createtime`,`updatetime`,`type`,`filepath`,`duration`,`director`,`actors`,`rdate`,`description`)
 			VALUE
-		(#{name},#{enable},#{imageurl},#{cateid},#{createtime},#{updatetime},#{type},#{filepath},#{duration},#{director},#{actors},#{rdate},#{description})
+		(#{name},#{enable},#{imageurl},#{cateid},#{createtime},#{updatetime},#{type},#{filepath},#{duration},#{director},#{actors},#{rdate},#{description},#{regionid})
 	</insert>
 
 	<select id="findDramainfoByName" parameterType="map" resultType="com.cloud.vod.entity.Dramainfo">

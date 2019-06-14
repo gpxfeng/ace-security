@@ -14,10 +14,32 @@ public class Dramainfo {
 	private String director;
 	private String actors;
 	private String rdate;
+	private String regionid;
 	private String description;
 
+	public Dramainfo() {
+	}
+
+	public Dramainfo(int id, String name, int enable, String imageurl, String cateid, String createtime, String updatetime, int type, String filepath, String duration, String director, String actors, String rdate, String regionid, String description) {
+		this.id = id;
+		this.name = name;
+		this.enable = enable;
+		this.imageurl = imageurl;
+		this.cateid = cateid;
+		this.createtime = createtime;
+		this.updatetime = updatetime;
+		this.type = type;
+		this.filepath = filepath;
+		this.duration = duration;
+		this.director = director;
+		this.actors = actors;
+		this.rdate = rdate;
+		this.regionid = regionid;
+		this.description = description;
+	}
+
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
@@ -25,7 +47,7 @@ public class Dramainfo {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -33,7 +55,7 @@ public class Dramainfo {
 	}
 
 	public int getEnable() {
-		return this.enable;
+		return enable;
 	}
 
 	public void setEnable(int enable) {
@@ -41,7 +63,7 @@ public class Dramainfo {
 	}
 
 	public String getImageurl() {
-		return this.imageurl;
+		return imageurl;
 	}
 
 	public void setImageurl(String imageurl) {
@@ -49,7 +71,7 @@ public class Dramainfo {
 	}
 
 	public String getCateid() {
-		return this.cateid;
+		return cateid;
 	}
 
 	public void setCateid(String cateid) {
@@ -57,7 +79,7 @@ public class Dramainfo {
 	}
 
 	public String getCreatetime() {
-		return this.createtime;
+		return createtime;
 	}
 
 	public void setCreatetime(String createtime) {
@@ -65,7 +87,7 @@ public class Dramainfo {
 	}
 
 	public String getUpdatetime() {
-		return this.updatetime;
+		return updatetime;
 	}
 
 	public void setUpdatetime(String updatetime) {
@@ -73,7 +95,7 @@ public class Dramainfo {
 	}
 
 	public int getType() {
-		return this.type;
+		return type;
 	}
 
 	public void setType(int type) {
@@ -81,7 +103,7 @@ public class Dramainfo {
 	}
 
 	public String getFilepath() {
-		return this.filepath;
+		return filepath;
 	}
 
 	public void setFilepath(String filepath) {
@@ -89,7 +111,7 @@ public class Dramainfo {
 	}
 
 	public String getDuration() {
-		return this.duration;
+		return duration;
 	}
 
 	public void setDuration(String duration) {
@@ -97,7 +119,7 @@ public class Dramainfo {
 	}
 
 	public String getDirector() {
-		return this.director;
+		return director;
 	}
 
 	public void setDirector(String director) {
@@ -105,7 +127,7 @@ public class Dramainfo {
 	}
 
 	public String getActors() {
-		return this.actors;
+		return actors;
 	}
 
 	public void setActors(String actors) {
@@ -113,15 +135,23 @@ public class Dramainfo {
 	}
 
 	public String getRdate() {
-		return this.rdate;
+		return rdate;
 	}
 
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
 
+	public String getRegionid() {
+		return regionid;
+	}
+
+	public void setRegionid(String regionid) {
+		this.regionid = regionid;
+	}
+
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -130,50 +160,22 @@ public class Dramainfo {
 
 	@Override
 	public String toString() {
-		return "Dramainfo [id=" + this.id + ", name=" + this.name + ", enable=" + this.enable + ", imageurl="
-				+ this.imageurl + ", cateid=" + this.cateid + ", createtime=" + this.createtime + ", updatetime="
-				+ this.updatetime + ", type=" + this.type + ", filepath=" + this.filepath + ", duration="
-				+ this.duration + ", director=" + this.director + ", actors=" + this.actors + ", rdate=" + this.rdate
-				+ ", description=" + this.description + "]";
-	}
-
-	public Dramainfo(int id, String name, int enable, String imageurl, String cateid, String createtime,
-			String updatetime, int type, String filepath, String duration, String director, String actors, String rdate,
-			String description) {
-		this.id = id;
-		this.name = name;
-		this.enable = enable;
-		this.imageurl = imageurl;
-		this.cateid = cateid;
-		this.createtime = createtime;
-		this.updatetime = updatetime;
-		this.type = type;
-		this.filepath = filepath;
-		this.duration = duration;
-		this.director = director;
-		this.actors = actors;
-		this.rdate = rdate;
-		this.description = description;
-	}
-
-	public Dramainfo() {
-	}
-
-	public Dramainfo(String name, int enable, String imageurl, String cateid, String createtime, String updatetime,
-			int type, String filepath, String duration, String director, String actors, String rdate,
-			String description) {
-		this.name = name;
-		this.enable = enable;
-		this.imageurl = imageurl;
-		this.cateid = cateid;
-		this.createtime = createtime;
-		this.updatetime = updatetime;
-		this.type = type;
-		this.filepath = filepath;
-		this.duration = duration;
-		this.director = director;
-		this.actors = actors;
-		this.rdate = rdate;
-		this.description = description;
+		return "Dramainfo{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", enable=" + enable +
+				", imageurl='" + imageurl + '\'' +
+				", cateid='" + cateid + '\'' +
+				", createtime='" + createtime + '\'' +
+				", updatetime='" + updatetime + '\'' +
+				", type=" + type +
+				", filepath='" + filepath + '\'' +
+				", duration='" + duration + '\'' +
+				", director='" + director + '\'' +
+				", actors='" + actors + '\'' +
+				", rdate='" + rdate + '\'' +
+				", regionid='" + regionid + '\'' +
+				", description='" + description + '\'' +
+				'}';
 	}
 }

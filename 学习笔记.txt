@@ -215,11 +215,62 @@ lvs、haproxy、nginx 负载均衡的比较分析   https://blog.csdn.net/gzh022
 
 
 
-多进程单线程和多线程单进程有何优点，有何缺点 
+多进程单线程和多线程单进程有何优点，有何缺点
 
 
 
+list去重保持顺序
+List<String> stringList = new ArrayList<String>();
+        Set set = new HashSet();
+        List newList = new ArrayList();
+        for (Iterator iter = stringList.iterator(); iter.hasNext();) {
+            Object element = iter.next();
+            if (set.add(element))
+                newList.add(element);
+        }
+stringList.clear();
+stringList.addAll(newList);
 
+map遍历三种
+1
+for(String key:map.keySet()){//keySet获取map集合key的集合  然后在遍历key即可
+                String value = map.get(key).toString();//
+                System.out.println("key:"+key+" vlaue:"+value);
+            }
+2
+ Iterator<Entry<String, Object>> it = map.entrySet().iterator();
+           while(it.hasNext()){
+                Entry<String, Object> entry = it.next();
+                System.out.println("key:"+entry.getKey()+"  key:"+entry.getValue());
+          }
+3    推荐，尤其是容量大时
+for (Map.Entry<String, Object> m : map.entrySet()) {
+        System.out.println("key:" + m.getKey() + " value:" + m.getValue());
+    }
+
+
+redis安装 linux
+$ mkdir redis
+$ chmod 755 redis
+$ cd redis
+$ wget http://download.redis.io/releases/redis-5.0.5.tar.gz
+$ tar xzf redis-5.0.5.tar.gz
+$ cd redis-5.0.5
+$ make
+$ sudo make install
+$ redis-server &       后台运行
+$ ps aux | grep redis  查看状态
+$ kill -9 PID          关闭线程
+$ vi ../redis.conf
+bind 127.0.0.1 使用#注释掉
+protected-mode yes 改为 protected-mode no
+
+
+修改redis的保护模式为no，不启用
+127.0.0.1:6379> config set protected-mode no
+或者    config set requirepass 123 ->123是密码
+
+redis-cli -h ip地址 -p 6379   远程连接
 
 
 

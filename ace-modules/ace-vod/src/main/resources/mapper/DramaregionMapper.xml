@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.vod.mapper.DramaregionMapper">
+
+	<select id="findRegionIdListByName" parameterType="string" resultType="Integer">
+		select ifnull(max(id),0) from dramaregion where name=#{name}
+	</select>
+	<insert id="addRegionByName" parameterType="com.cloud.vod.entity.Dramaregion" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `dramaregion` (`name`,`enable`,`sequence`,`type`) VALUES (#{name},#{enable},#{sequence},#{type})
+	</insert>
+
+</mapper>

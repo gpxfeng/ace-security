@@ -2,6 +2,7 @@ package com.cloud.vod.utils.force;
 
 import org.apache.log4j.Logger;
 
+import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -17,14 +18,13 @@ public class DES {
         Cipher cipher = Cipher.getInstance("DES");
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte[] encryptedData = cipher.doFinal(encryptString.getBytes("utf-8"));
-        //System.out.println(BytesUtil.bytesToHexString(encryptedData));
-        String content = Base64.encodeToString(encryptedData, 8);
+        String content = Base64.getEncoder().encodeToString(encryptedData);
         content = content.replaceAll("\n", "").trim();
         return content;
     }
 
     public static String decryptDESURL(String decryptString, String decryptKey) throws Exception {
-        byte[] byteMi = Base64.decode(decryptString, 8);
+        byte[] byteMi = Base64.getDecoder().decode(decryptString);
         IvParameterSpec zeroIv = new IvParameterSpec(iv);
         SecretKeySpec key = new SecretKeySpec(decryptKey.getBytes(), "DES");
         Cipher cipher = Cipher.getInstance("DES");
@@ -39,13 +39,13 @@ public class DES {
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte[] encryptedData = cipher.doFinal(encryptString.getBytes("utf-8"));
 
-        String content = Base64.encodeToString(encryptedData, 0);
+        String content = Base64.getEncoder().encodeToString(encryptedData);
         content = content.replaceAll("\n", "").trim();
         return content;
     }
 
     public static String decryptDESContent(String decryptString, String decryptKey) throws Exception {
-        byte[] byteMi = Base64.decode(decryptString, 0);
+        byte[] byteMi = Base64.getDecoder().decode(decryptString);
         IvParameterSpec zeroIv = new IvParameterSpec(iv);
         SecretKeySpec key = new SecretKeySpec(decryptKey.getBytes(), "DES");
         Cipher cipher = Cipher.getInstance("DES");
@@ -74,19 +74,6 @@ public class DES {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		str = "RKwCBU6M6CQGtYgjlaaru-PtYG4TsXcQdMNy2aeSjAeJI7cQwGzO_1i16AT27-TaN3Tzow4COYK9nZyHA38GvFUu0xmwkFqodG-ryAwjk1RxK5dLJspCty6kj5XfpMF";
-//		try {
-//			str = decryptDESURL(str, "liveiptv");
-//			System.out.println(str);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//    	String json = "{\"clienttype\":\"2\", \"system\":\"AUDISAT_A5\", \"model\":\"AUDISAT_A5\", \"brand\":\"SUN1507E\", \"launcher\":\"AUDISAT_A5\", \"mac\":\"3C0003000081\", \"stbid\":\"6600030000000E\", \"chipid\":\"D265B4B70B2E3335\", \"name\":\"Beans_VOD\", \"versioncode\":\"1295\", \"key\":\"216210\", \"sign\":\"856cf2ed24cc8aa179a4fd521c54d83a\"}";
-//    	try {
-//			String encrypt = encryptDESURL(json, "19791231");
-//			System.out.println(encrypt);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+
 	}
 }

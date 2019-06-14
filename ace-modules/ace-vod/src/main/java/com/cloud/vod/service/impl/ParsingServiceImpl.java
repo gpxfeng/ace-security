@@ -3,7 +3,9 @@ package com.cloud.vod.service.impl;
 
 import com.cloud.vod.entity.Website;
 import com.cloud.vod.mapper.WebsiteMapper;
+import com.cloud.vod.parsing.HaiwaiyyParsing;
 import com.cloud.vod.service.ParsingService;
+import com.cloud.vod.utils.PropertyConfigUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +20,17 @@ public class ParsingServiceImpl implements ParsingService {
 
     private Logger logger = LoggerFactory.getLogger(ParsingServiceImpl.class);
 
+    private PropertyConfigUtil pConfigUtil = PropertyConfigUtil.getInstance("Configs.properties");
+
+    private int thefilmestorrents_threadNum = Integer.parseInt(pConfigUtil.getValue("thefilmestorrents_threadNum"));
+
     public static Map<String, Integer> parseResult = new HashMap<>();
 
     @Autowired
     private WebsiteMapper websiteDao;
 
-   /* @Autowired
-    private TorrentFilmesParsing torrentFilmesParsing;
-
     @Autowired
-    private MfilmesHdparsing mfilmesHdparsing;*/
+    private HaiwaiyyParsing haiwaiyyParsing;
 
     @Override
     public void startParsing() {
@@ -35,28 +38,23 @@ public class ParsingServiceImpl implements ParsingService {
         map.put("type", 1);
         map.put("enable", 1);
         List<Website> websites = websiteDao.findWebsite(map);
+        try {
+            logger.debug("定时任务跑起来啦啦啦啦啦");
+            Thread.sleep(300000000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         for (Website website : websites) {
             String websiteName = website.getName();
-           /*if (websiteName.contains("torrentfilmes.biz")){
-				logger.info("创建torrentfilmes.biz爬虫线程");
-				parseResult.put(websiteName, 0);
-				torrentFilmesParsing.setWebsiteName(websiteName);
-				torrentFilmesParsing.setParseWebUrl(website.getWeburl());
-				torrentFilmesParsing.setThreadNum(thefilmestorrents_threadNum);
-				torrentFilmesParsing.start();
-			}*/
-           /*else if (websiteName.contains("mfilmeshd.com")) {
-                logger.info("创建mfilmeshd.comm爬虫线程");
+            if (websiteName.contains("haiwaiyy.com")) {
+                logger.info("创建haiwaiyy.com爬虫线程");
                 parseResult.put(websiteName, 0);
-                mfilmesHdparsing.setWebsiteName(websiteName);
-                mfilmesHdparsing.setParseWebUrl(website.getWeburl());
-                mfilmesHdparsing.setThreadNum(1);
-                mfilmesHdparsing.start();
-            }*/
-            logger.debug("定时任务跑起来啦啦啦啦啦");
-
+                haiwaiyyParsing.setWebsiteName(websiteName);
+                haiwaiyyParsing.setParseWebUrl(website.getWeburl());
+                haiwaiyyParsing.setThreadNum(thefilmestorrents_threadNum);
+                haiwaiyyParsing.start();
+            }
         }
-
     }
 
 }

@@ -1,6 +1,6 @@
 package com.cloud.vod.utils.force;
 
-import com.VodWebCrawler.cms.util.PropertyConfigUtil;
+import com.cloud.vod.utils.PropertyConfigUtil;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import net.sf.json.util.CycleDetectionStrategy;
