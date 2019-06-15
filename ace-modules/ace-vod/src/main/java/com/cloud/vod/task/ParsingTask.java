@@ -23,7 +23,7 @@ public class ParsingTask {
 	private ParsingService parsingServiceImpl;
 
 
-	@Scheduled(cron = "0 * * * * ? ") //单线程
+	@Scheduled(cron = "0 0 0 * * ? ") //单线程
 	public void startJob(){
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		logger.info("开始定时爬取,时间="+dateFormat.format(new Date()));

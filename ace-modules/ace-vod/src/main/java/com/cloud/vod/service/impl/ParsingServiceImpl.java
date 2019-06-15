@@ -42,7 +42,7 @@ public class ParsingServiceImpl implements ParsingService {
             logger.debug("定时任务跑起来啦啦啦啦啦");
             Thread.sleep(300000000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error("线程异常");
         }
         for (Website website : websites) {
             String websiteName = website.getName();
