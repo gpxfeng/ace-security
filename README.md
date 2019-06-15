@@ -107,10 +107,9 @@ ace-security
 - web.xml里的servlet-mapping下的url-pattern，控制了springMVC的url请求后缀
 - ace-admin里BCrypt加密: BCrypt.hashpw(password, BCrypt.gensalt()) ,后面的参数是所说的加盐,checkpw()是比对,一样返回true
 - java9模块化的概念使得JAXB默认没有加载,jaxb-api是存在jdk中的,idea打开Modules，添加jdk手动引入
-- java9以后,sun.misc.BASE64Decoder和sun.misc.BASE64Encoder不可用,api删除了,换成java.util.Base64.Decoder和java.util.Base64.Encoder  代码↓
+- java9以后,sun.misc.BASE64Decoder和sun.misc.BASE64Encoder不可用,api删除了,换成java.util.Base64.Decoder和java.util.Base64.Encoder    代码↓
 -      Base64.getEncoder().encodeToString(b)
 -      Base64.getDecoder().decode(s)
-- 深拷贝不仅拷贝对象本身,而且拷贝对象包含的引用指向的所有对象。浅拷贝就只拷贝对象属性,对象中的基本变量,引用地址不拷贝
 - 项目用到了feign,pox文件要加 spring-boot-starter-web 依赖
 ------
 - list去重保持顺序
@@ -154,6 +153,7 @@ for (Map.Entry<String, Object> m : map.entrySet()) {
      }
   }
 ```
+- 深拷贝不仅拷贝对象本身,而且拷贝对象包含的引用指向的所有对象。浅拷贝就只拷贝对象属性,对象中的基本变量,引用地址不拷贝
 - 在entry转化为dto时,如果字段太多,并且需要全部转化时,应该使用支持浅拷贝或深拷贝的Utils  文章链接https://juejin.im/post/5ce7e78d518825064000531a  
 ```
   这样就少写了全部的get，set方法
@@ -261,7 +261,7 @@ $ redis-cli
 redis-cli -h ip地址 -p 6379   远程连接
 ```
 - redis清缓存
-- 进入src/redis-cli    cd src/redis-cli
+- win----src/redis-cli      linux----cd src/redis-cli
 - 127.0.0.1:6379>dbsize
 - 127.0.0.1:6379>flushall
 - 127.0.0.1:6379>exit
