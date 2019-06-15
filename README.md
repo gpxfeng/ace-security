@@ -91,10 +91,10 @@ ace-security
 - 运行数据库脚本:依次运行数据库：ace-admin/db/init.sql-----ace-auth-server/db/init.sql  运行sql脚本
 - 修改配置数据库配置:ace-admin/src/main/resources/application.yml------ace-gate/src/main/resources/application.yml  
 - 按`顺序`运行main类:
---CenterBootstrap(ace-center)-------------注册中心
---AuthBootstrap(ace-auth-serve)-----------鉴权服务
---AdminBootstrap(ace-admin)---------------用户服务
---GatewayServerBootstrap(ace-gateway-v2)--网关服务
+- CenterBootstrap(ace-center)-------------注册中心
+- AuthBootstrap(ace-auth-serve)-----------鉴权服务
+- AdminBootstrap(ace-admin)---------------用户服务
+- GatewayServerBootstrap(ace-gateway-v2)--网关服务
 
 
 ## 前端工程启动[vueAdmin][点击打开](https://github.com/gpxfeng/vueAdmin)
@@ -107,8 +107,8 @@ ace-security
 - web.xml里的servlet-mapping下的url-pattern，控制了springMVC的url请求后缀
 - ace-admin里BCrypt加密: BCrypt.hashpw(password, BCrypt.gensalt()) ,后面的参数是所说的加盐,checkpw()是比对,一样返回true
 - java9模块化的概念使得JAXB默认没有加载,jaxb-api是存在jdk中的,idea打开Modules，添加jdk手动引入
-- java9以后,sun.misc.BASE64Decoder和sun.misc.BASE64Encoder不可用,api删除了,换成java.util.Base64.Decoder和java.util.Base64.Encoder
-- 代码  Base64.getEncoder().encodeToString(b)
+- java9以后,sun.misc.BASE64Decoder和sun.misc.BASE64Encoder不可用,api删除了,换成java.util.Base64.Decoder和java.util.Base64.Encoder  代码↓
+-      Base64.getEncoder().encodeToString(b)
 -      Base64.getDecoder().decode(s)
 - 深拷贝不仅拷贝对象本身,而且拷贝对象包含的引用指向的所有对象。浅拷贝就只拷贝对象属性,对象中的基本变量,引用地址不拷贝
 - 项目用到了feign,pox文件要加 spring-boot-starter-web 依赖
@@ -128,12 +128,13 @@ ace-security
 ```
 - map遍历三种
 ```
+1
 for(String key:map.keySet()){//keySet获取map集合key的集合  然后在遍历key即可
                 String value = map.get(key).toString();//
                 System.out.println("key:"+key+" vlaue:"+value);
             }
 2
- Iterator<Entry<String, Object>> it = map.entrySet().iterator();
+Iterator<Entry<String, Object>> it = map.entrySet().iterator();
            while(it.hasNext()){
                 Entry<String, Object> entry = it.next();
                 System.out.println("key:"+entry.getKey()+"  key:"+entry.getValue());
@@ -154,8 +155,8 @@ for (Map.Entry<String, Object> m : map.entrySet()) {
   }
 ```
 - 在entry转化为dto时,如果字段太多,并且需要全部转化时,应该使用支持浅拷贝或深拷贝的Utils  文章链接https://juejin.im/post/5ce7e78d518825064000531a  
-- 这样就少写了全部的get，set方法
 ```
+  这样就少写了全部的get，set方法
   @RequestMapping("/v1/api/user")
   @RestController
   public class UserApi {
@@ -268,7 +269,7 @@ redis-cli -h ip地址 -p 6379   远程连接
 
 ## idea使用
 - 使用git上传到github   https://www.cnblogs.com/jinjiyese153/p/6796668.html
-### 常用快捷键
+#### 常用快捷键
 - 1.CTR+N             搜索类
 - 2.CTR+SHIT+N        搜索文件
 - 3.CTR+ALT+空格      代码提示（类似于ALT+/）
