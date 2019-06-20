@@ -1,6 +1,7 @@
 package com.cloud.vod.parsing;
 
 
+
 import com.cloud.vod.downloader.MyHttpClientDownloader.HttpClientDownloader_RepairTlsHttps;
 import com.cloud.vod.pipeline.HaiwaiyyPipeline;
 import com.cloud.vod.utils.WebDriverUtil;
@@ -17,7 +18,7 @@ import us.codecraft.webmagic.pipeline.ConsolePipeline;
 import java.util.*;
 
 @Component
-public class HaiwaiyyParsing  extends ParsingBase{
+public class HaiwaiyyParsing extends ParsingBase {
 
     @Autowired
     private HaiwaiyyPipeline haiwaiyyPipeline;
@@ -27,11 +28,11 @@ public class HaiwaiyyParsing  extends ParsingBase{
         try {
             if (page.getUrl().regex("https://www.haiwaiyy.com/vod-type-id-\\d+-pg-\\d+.html").match()) {
                 parsingFilm(page);
-            }else if (page.getUrl().regex("https://www.haiwaiyy.com/vod-detail-id-\\d+.html").match()) {
+            } else if (page.getUrl().regex("https://www.haiwaiyy.com/vod-detail-id-\\d+.html").match()) {
                 parsingFilmInfo(page);
-            }else if(page.getUrl().regex("https://www.haiwaiyy.com/").match()) {
+            } else if (page.getUrl().regex("https://www.haiwaiyy.com/").match()) {
                 parsingType(page);
-            }else {
+            } else {
                 page.setSkip(true);
             }
         } catch (Exception e) {
@@ -65,44 +66,44 @@ public class HaiwaiyyParsing  extends ParsingBase{
      */
     public void parsingFilmInfo(Page page) {
         // 封面地址
-        page.putField("img", "https://www.haiwaiyy.com"+page.getHtml().xpath("//div[@class=\"img\"]/a/img/@src").toString());
+        page.putField("img", "https://www.haiwaiyy.com" + page.getHtml().xpath("//div[@class=\"img\"]/a/img/@src").toString());
         //名称
         page.putField("movieName", page.getHtml().xpath("//div[@class=\"mod_txt\"]/div/h1/em/text()").toString());
         //简介
-        page.putField("introduce",page.getHtml().xpath("//div[@class=\"mod_show_box mt15\"]/div[2]/font/font/text()").toString());
+        page.putField("introduce", page.getHtml().xpath("//div[@class=\"mod_show_box mt15\"]/div[2]/font/font/text()").toString());
         //年份
-        page.putField("year",page.getHtml().xpath("//div[@class=\"mod_txt\"]/ul/li[6]/a/text()").toString());
+        page.putField("year", page.getHtml().xpath("//div[@class=\"mod_txt\"]/ul/li[6]/a/text()").toString());
         //类型
         String type = page.getHtml().xpath("//div[@class=\"mod_txt\"]/ul/li[2]/span/a/text()").toString();
-        page.putField("type",type);
+        page.putField("type", type);
         //视频类型 1电影，2连续剧，3成人，4动漫，5回看
         int vidType = 1;
-        if (type.contains("剧")){
-            vidType=2;
-        }else if (type.contains("动漫")){
-            vidType=4;
-        }else if (type.contains("综艺")){
+        if (type.contains("剧")) {
+            vidType = 2;
+        } else if (type.contains("动漫")) {
+            vidType = 4;
+        } else if (type.contains("综艺")) {
             page.setSkip(true);
             return;
         }
-        page.putField("vidType",vidType);
+        page.putField("vidType", vidType);
         //主演
         List<String> actors = page.getHtml().xpath("//div[@class=\"mod_txt\"]/ul/li[3]/a/text()").all();
         page.putField("actors", StringUtils.join(actors.toArray(), ","));
 
         //导演
-        page.putField("director",page.getHtml().xpath("//div[@class=\"mod_txt\"]/ul/li[4]/a/text()").toString());
+        page.putField("director", page.getHtml().xpath("//div[@class=\"mod_txt\"]/ul/li[4]/a/text()").toString());
         //发布国家
-        page.putField("country",page.getHtml().xpath("//div[@class=\"mod_txt\"]/ul/li[5]/a/text()").toString());
+        page.putField("country", page.getHtml().xpath("//div[@class=\"mod_txt\"]/ul/li[5]/a/text()").toString());
         //语言
-        page.putField("language",page.getHtml().xpath("//div[@class=\"mod_txt\"]/ul/li[5]/font[@color='#2b2415']/text()").toString());
+        page.putField("language", page.getHtml().xpath("//div[@class=\"mod_txt\"]/ul/li[5]/font[@color='#2b2415']/text()").toString());
 
         //播放地址
         List<String> stringList = page.getHtml().xpath("//div[@id=\"dizhi\"]/div/ul/li/a/text()").all();
         //如果是多集数,多专线,需要去重减少webDriver连接次数
         Set set = new HashSet();
         List newList = new ArrayList();
-        for (Iterator iter = stringList.iterator(); iter.hasNext();) {
+        for (Iterator iter = stringList.iterator(); iter.hasNext(); ) {
             Object element = iter.next();
             if (set.add(element))
                 newList.add(element);
@@ -114,40 +115,40 @@ public class HaiwaiyyParsing  extends ParsingBase{
         // 视频链接
         Map<String, String> mp4UrlMap = new HashMap<>();
         WebDriver webDriver = WebDriverUtil.GetWebDriver();
-        for (int i = 0; i < stringList.size(); i++) {
-            for (int j = 0; j < aList.size(); j++) {
-                if (i==j){
-                    try {
-                        //打开新网页  美洲专线打不开 报错
+        try {
+            for (int i = 0; i < stringList.size(); i++) {
+                for (int j = 0; j < aList.size(); j++) {
+                    if (i == j) {
+                        //打开新网页
                         webDriver.get(aList.get(j));
                         WebElement elementIf = webDriver.findElement(By.xpath("//*[@id=\"playleft\"]/iframe[2]"));
                         webDriver.get(elementIf.getAttribute("src"));
                         String doc = webDriver.getPageSource();
-                        if (doc.contains("videoObject")){//海外专线
+                        if (doc.contains("videoObject")) {//海外专线
                             String videoUrl = doc.substring(doc.indexOf("videoObject") + 14, doc.lastIndexOf("var player") - 2);
                             String video = videoUrl.substring(videoUrl.indexOf("video:") + 7, videoUrl.lastIndexOf("'"));
-                            mp4UrlMap.put(stringList.get(i),video);
-                        }else if(doc.contains("m3u8url")){//美洲专线
+                            mp4UrlMap.put(stringList.get(i), video);
+                        } else if (doc.contains("m3u8url")) {//美洲专线
                             String videoUrl = doc.substring(doc.indexOf("m3u8url") + 9, doc.lastIndexOf("DPlayer") - 12);
                             String video = videoUrl.substring(videoUrl.indexOf("'") + 1, videoUrl.lastIndexOf("'"));
-                            mp4UrlMap.put(stringList.get(i),video);
+                            mp4UrlMap.put(stringList.get(i), video);
                         }
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        webDriver.quit();
                     }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            webDriver.quit();
+        }finally {
+            webDriver.quit();
         }
         //视频链接
-        if(mp4UrlMap.isEmpty()){
+        if (mp4UrlMap.isEmpty()) {
             page.setSkip(true);
             return;
-        }else {
+        } else {
             page.putField("downloadMap", mp4UrlMap);
         }
-        webDriver.quit();
         //网站名称
         page.putField("websiteName", getWebsiteName());
     }

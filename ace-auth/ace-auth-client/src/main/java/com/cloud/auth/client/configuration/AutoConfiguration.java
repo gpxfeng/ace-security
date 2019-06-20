@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-@ComponentScan({"com.cloud.auth.client","com.cloud.auth.common.event"})
+@ComponentScan({"com.cloud.auth.client","com.cloud.auth.common"})
 @RemoteApplicationEventScan(basePackages = "com.cloud.auth.common.event")
 public class AutoConfiguration {
     @Bean

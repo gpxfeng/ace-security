@@ -1,6 +1,6 @@
 package com.cloud.vod.utils.force;
 
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,8 +8,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
 
+@Slf4j
 public class PrintStream extends Thread {
-	private Logger logger = Logger.getLogger(PrintStream.class);
 	// 控制线程状态
 	volatile boolean status = true;
 	BufferedReader br = null;
@@ -32,7 +32,7 @@ public class PrintStream extends Thread {
 				if ((msg = br.readLine()) != null) {
 					long nowTime = new Date().getTime();
 					if (nowTime - lastTime >= 10000) {
-//					    logger.info(type + "消息：" + msg);
+//					    log.info(type + "消息：" + msg);
 						lastTime = nowTime;
 					}
 				} else {
@@ -40,7 +40,7 @@ public class PrintStream extends Thread {
 				}
 			}
 		} catch (IOException e) {
-			logger.error(e, e);
+			log.error("", e.getMessage());
 		}
 	}
 

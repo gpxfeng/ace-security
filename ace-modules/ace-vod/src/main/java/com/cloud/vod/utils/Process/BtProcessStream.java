@@ -1,15 +1,20 @@
 package com.cloud.vod.utils.Process;
 
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+
+
+
+import java.util.Date;
+
 
 /**
 * Copyright: Copyright (c) 2019 LanRu-Caifu
@@ -21,8 +26,8 @@ import java.util.regex.Pattern;
 * @author: yuxianfeng
 * @date: 2019年3月1日 下午7:18:26
 */
+@Slf4j
 public class BtProcessStream extends Thread {
-    private Logger logger = Logger.getLogger(BtProcessStream.class);
     // 控制线程状态
     volatile boolean threadStatus = true;
     volatile boolean btDownloadResult = false;
@@ -55,7 +60,7 @@ public class BtProcessStream extends Thread {
                     }
 
                     if (msg.contains("State changed from \"Incomplete\" to \"Complete\"")) {       //bt下载完成
-                        logger.info(type+"---bt下载成功");
+                        log.info(type+"---bt下载成功");
                         btDownloadResult=true;
                         ProcessUtil.stopProcess(pids);
                         break;
@@ -64,7 +69,7 @@ public class BtProcessStream extends Thread {
                     nowTime = new Date().getTime();
                     if (nowTime - startTime >= (3*60*1000)) {      //3分钟后检测bt是否下载
                         if (progress<1) {
-                            logger.info(type+"---bt下载超时");     //##下载中，35%,突然kill     ##有进程未关闭
+                            log.info(type+"---bt下载超时");     //##下载中，35%,突然kill     ##有进程未关闭
                             ProcessUtil.stopProcess(pids);
                             break;
                         }
@@ -76,7 +81,7 @@ public class BtProcessStream extends Thread {
 
 
         } catch (IOException e) {
-            logger.error(e, e);
+            log.error("io异常", e);
         }
     }
 

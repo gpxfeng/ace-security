@@ -5,8 +5,8 @@ import com.cloud.vod.entity.Dramainfo;
 import com.cloud.vod.entity.Videoinfo;
 import com.cloud.vod.utils.HttpRequest;
 import com.cloud.vod.utils.PropertyConfigUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -16,8 +16,8 @@ import java.util.*;
 
 
 @SuppressWarnings({ "rawtypes","unchecked" })
+@Slf4j
 public class ForceUtil {
-	private static Logger logger = Logger.getLogger(ForceUtil.class);
 	private static PropertyConfigUtil propertyConfigUtil = PropertyConfigUtil.getInstance("Configs.properties");
 
 	public static String[] UserAgent = { "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0" };
@@ -64,13 +64,12 @@ public class ForceUtil {
 	 * 原力添加
 	 *
 	 * @param mediaUrl
-	 * @param name
 	 * @return
 	 */
 	public static ForceVideo saveForceLiveVideo(String videoName, int videoType, String mediaUrl) {
 		String[] ftds = propertyConfigUtil.getValue("ftds").split(",");
 
-		logger.info("forceSaveChannel mediaUrl=" + mediaUrl + ", name=" + videoName);
+		log.info("forceSaveChannel mediaUrl=" + mediaUrl + ", name=" + videoName);
 		if (mediaUrl == null || mediaUrl.length() == 0 || videoName == null || videoName.length() == 0) {
 			return null;
 		}
@@ -107,15 +106,15 @@ public class ForceUtil {
 		try {
 			respone = HttpRequest.get(forcecmsurl, params, true).authorization(getAuthorization()).headers(getHeaderMap()).body();
 		} catch (Exception e) {
-			logger.error(e, e);
+			log.error("", e);
 		}
-		logger.info("respone=" + respone);
+		log.info("respone=" + respone);
 
 		Document document = null;
 		try {
 			document = DocumentHelper.parseText(respone);
 		} catch (DocumentException e) {
-			logger.error(e, e);
+			log.error("", e);
 		}
 		if (document == null) {
 			return null;
@@ -137,7 +136,7 @@ public class ForceUtil {
 				forceVideo.setId(id);
 				forceVideo.setUrl(url);
 				forceVideo.setP2pUrl(getForceP2purl() + id);
-				logger.info("force channelId=" + id);
+				log.info("force channelId=" + id);
 				return forceVideo;
 			}
 		}
@@ -148,7 +147,6 @@ public class ForceUtil {
 	 * 原力添加
 	 *
 	 * @param mediaUrl
-	 * @param name
 	 * @return
 	 */
 	public static ForceVideo saveForceVodVideo(String videoName, int videoType, String mediaUrl) {
@@ -157,7 +155,7 @@ public class ForceUtil {
 		String[] series_ftds = propertyConfigUtil.getValue("series_ftds").split(",");
 		String[] anime_ftds = propertyConfigUtil.getValue("anime_ftds").split(",");
 
-		logger.info("forceSaveChannel mediaUrl=" + mediaUrl + ", name=" + videoName);
+		log.info("forceSaveChannel mediaUrl=" + mediaUrl + ", name=" + videoName);
 		if (mediaUrl == null || mediaUrl.length() == 0 || videoName == null || videoName.length() == 0) {
 			return null;
 		}
@@ -222,15 +220,15 @@ public class ForceUtil {
 		try {
 			respone = HttpRequest.get(forcecmsurl, params, true).authorization(getAuthorization()).headers(getHeaderMap()).body();
 		} catch (Exception e) {
-			logger.error(e, e);
+			log.error("", e);
 		}
-		logger.info("respone=" + respone);
+		log.info("respone=" + respone);
 
 		Document document = null;
 		try {
 			document = DocumentHelper.parseText(respone);
 		} catch (DocumentException e) {
-			logger.error(e, e);
+			log.error("", e);
 		}
 		if (document == null) {
 			return null;
@@ -252,7 +250,7 @@ public class ForceUtil {
 				forceVideo.setId(id);
 				forceVideo.setUrl(url);
 				forceVideo.setP2pUrl(getForceP2purl() + id);
-				logger.info("force channelId=" + id);
+				log.info("force channelId=" + id);
 				return forceVideo;
 			}
 		}
@@ -326,9 +324,9 @@ public class ForceUtil {
 		try {
 			respone = HttpRequest.post(forcecmsurl, params, true).authorization(getAuthorization()).headers(getHeaderMap()).body();
 		} catch (Exception e) {
-			logger.error(e, e);
+			log.error("", e);
 		}
-//		logger.info("respone=" + respone);
+//		log.info("respone=" + respone);
 	}
 
 
@@ -345,13 +343,13 @@ public class ForceUtil {
 		try {
 			respone = HttpRequest.get(forcecmsurl, params, true).authorization(getAuthorization()).headers(getHeaderMap()).body();
 		} catch (Exception e) {
-			logger.error(e, e);
+			log.error("", e);
 		}
 		Document document = null;
 		try {
 			document = DocumentHelper.parseText(respone);
 		} catch (DocumentException e) {
-			logger.error(e, e);
+			log.error("", e);
 		}
 		if (document == null) {
 			return ftdsList;
@@ -373,7 +371,7 @@ public class ForceUtil {
 	}
 
 	public static String deleteForceVideo(String id, String name, boolean isVod) {
-		logger.info("force del F_id=" + id + ", F_name=" + name);
+		log.info("force del F_id=" + id + ", F_name=" + name);
 		if (id == null || id.length() == 0 || name == null || name.length() == 0) {
 			return "";
 		}
@@ -392,9 +390,9 @@ public class ForceUtil {
 		try {
 			respone = HttpRequest.get(url, params, true).authorization(authorization).headers(getHeaderMap()).body();
 		} catch (Exception e) {
-			logger.error(e, e);
+			log.error("", e);
 		}
-		logger.info("force del respone=" + respone);
+		log.info("force del respone=" + respone);
 		return respone;
 	}
 
@@ -412,13 +410,13 @@ public class ForceUtil {
 		try {
 			respone = HttpRequest.get(forcecmsurl, params, true).authorization(getAuthorization()).headers(getHeaderMap()).body();
 		} catch (Exception e) {
-			logger.error(e, e);
+			log.error("", e);
 		}
 		Document document = null;
 		try {
 			document = DocumentHelper.parseText(respone);
 		} catch (DocumentException e) {
-			logger.error(e, e);
+			log.error("", e);
 		}
 		if (document == null) {
 			return null;
@@ -442,7 +440,7 @@ public class ForceUtil {
 				forceVideo.setId(id);
 				forceVideo.setUrl(url);
 				forceVideo.setP2pUrl(getForceP2purl() + id);
-				logger.info("force channelId=" + id);
+				log.info("force channelId=" + id);
 			} else if (!name.equals(videoName) && url.contains(mediaUrl)) {
 //				String baseUrl = mediaUrl.substring(0, mediaUrl.lastIndexOf("/"));
 //				if (url.contains(baseUrl)) {

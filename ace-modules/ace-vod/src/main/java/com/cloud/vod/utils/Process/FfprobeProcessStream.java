@@ -1,6 +1,7 @@
 package com.cloud.vod.utils.Process;
 
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,8 +9,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
+@Slf4j
 public class FfprobeProcessStream extends Thread {
-    private Logger logger = Logger.getLogger(FfprobeProcessStream.class);
     // 控制线程状态
     volatile boolean threadStatus = true;
     volatile StringBuffer OutputInfo=new StringBuffer();
@@ -37,7 +38,7 @@ public class FfprobeProcessStream extends Thread {
 
 
         } catch (IOException e) {
-            logger.error(e, e);
+            log.error("", e);
         }
     }
 

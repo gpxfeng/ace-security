@@ -1,6 +1,6 @@
 package com.cloud.vod.utils.force;
 
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Base64;
 import javax.crypto.Cipher;
@@ -8,8 +8,8 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 @SuppressWarnings("unused")
+@Slf4j
 public class DES {
-    private static Logger logger = Logger.getLogger(DES.class);
     private static byte[] iv = new byte[]{(byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0};
 
     public static String encryptDESURL(String encryptString, String encryptKey) throws Exception {

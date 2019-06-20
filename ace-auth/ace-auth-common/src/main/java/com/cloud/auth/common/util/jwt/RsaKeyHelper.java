@@ -16,7 +16,7 @@ import java.util.Map;
 public class RsaKeyHelper {
     /**
      * 获取公钥
-     *
+     * 将公钥导入并返回按照 X.509 标准进行编码的密钥的字节
      * @param filename
      * @return
      * @throws Exception
@@ -34,7 +34,7 @@ public class RsaKeyHelper {
 
     /**
      * 获取密钥
-     *
+     * 导入密钥并生成使用PKCS#8标准作为密钥规范管理的编码格式私钥
      * @param filename
      * @return
      * @throws Exception
@@ -52,7 +52,7 @@ public class RsaKeyHelper {
 
     /**
      * 获取公钥
-     *
+     * 传入公钥并返回按照 X.509 标准进行编码的公钥的字节
      * @param publicKey
      * @return
      * @throws Exception
@@ -65,7 +65,7 @@ public class RsaKeyHelper {
 
     /**
      * 获取密钥
-     *
+     * 传入密钥返回使用PKCS#8标准作为密钥规范管理的编码格式密钥
      * @param privateKey
      * @return
      * @throws Exception
@@ -77,62 +77,17 @@ public class RsaKeyHelper {
     }
 
     /**
-     * 生存rsa公钥和密钥
+     * 生成秘钥对,程序启动时可以运行以下方法,将生成的秘钥对放在静态变量里面存放,方便后续使用
      *
-     * @param publicKeyFilename
-     * @param privateKeyFilename
      * @param password
+     * @return
      * @throws IOException
      * @throws NoSuchAlgorithmException
      */
-    public void generateKey(String publicKeyFilename, String privateKeyFilename, String password) throws IOException, NoSuchAlgorithmException {
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        SecureRandom secureRandom = new SecureRandom(password.getBytes());
-        keyPairGenerator.initialize(1024, secureRandom);
-        KeyPair keyPair = keyPairGenerator.genKeyPair();
-        byte[] publicKeyBytes = keyPair.getPublic().getEncoded();
-        FileOutputStream fos = new FileOutputStream(publicKeyFilename);
-        fos.write(publicKeyBytes);
-        fos.close();
-        byte[] privateKeyBytes = keyPair.getPrivate().getEncoded();
-        fos = new FileOutputStream(privateKeyFilename);
-        fos.write(privateKeyBytes);
-        fos.close();
-    }
-
-    /**
-     * 生存rsa公钥
-     *
-     * @param password
-     * @throws IOException
-     * @throws NoSuchAlgorithmException
-     */
-    public static byte[] generatePublicKey(String password) throws IOException, NoSuchAlgorithmException {
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        SecureRandom secureRandom = new SecureRandom(password.getBytes());
-        keyPairGenerator.initialize(1024, secureRandom);
-        KeyPair keyPair = keyPairGenerator.genKeyPair();
-        return keyPair.getPublic().getEncoded();
-    }
-
-    /**
-     * 生存rsa公钥
-     *
-     * @param password
-     * @throws IOException
-     * @throws NoSuchAlgorithmException
-     */
-    public static byte[] generatePrivateKey(String password) throws IOException, NoSuchAlgorithmException {
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        SecureRandom secureRandom = new SecureRandom(password.getBytes());
-        keyPairGenerator.initialize(1024, secureRandom);
-        KeyPair keyPair = keyPairGenerator.genKeyPair();
-        return keyPair.getPrivate().getEncoded();
-    }
-
     public static Map<String, byte[]> generateKey(String password) throws IOException, NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         SecureRandom secureRandom = new SecureRandom(password.getBytes());
+        //根据随机种子生成秘钥对
         keyPairGenerator.initialize(1024, secureRandom);
         KeyPair keyPair = keyPairGenerator.genKeyPair();
         byte[] publicKeyBytes = keyPair.getPublic().getEncoded();

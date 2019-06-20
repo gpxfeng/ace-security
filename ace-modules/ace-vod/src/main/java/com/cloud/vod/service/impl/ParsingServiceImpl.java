@@ -38,12 +38,7 @@ public class ParsingServiceImpl implements ParsingService {
         map.put("type", 1);
         map.put("enable", 1);
         List<Website> websites = websiteDao.findWebsite(map);
-        try {
-            logger.debug("定时任务跑起来啦啦啦啦啦");
-            Thread.sleep(300000000);
-        } catch (InterruptedException e) {
-            logger.error("线程异常");
-        }
+        logger.debug("定时任务跑起来啦啦啦啦啦");
         for (Website website : websites) {
             String websiteName = website.getName();
             if (websiteName.contains("haiwaiyy.com")) {

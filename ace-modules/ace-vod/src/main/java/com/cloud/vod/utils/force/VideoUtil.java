@@ -1,11 +1,11 @@
 package com.cloud.vod.utils.force;
 
 import com.cloud.vod.utils.PropertyConfigUtil;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import net.sf.json.util.CycleDetectionStrategy;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,11 +14,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-
+@Slf4j
 public class VideoUtil {
 
 	private static PropertyConfigUtil propertyConfigUtil = PropertyConfigUtil.getInstance(Defines.Property.PROFILE_SETTING);
-	private static Logger logger = Logger.getLogger(VideoUtil.class);
+
 
 	public final static String VOD_FILM_TYPE = "film";
 	public final static String VOD_CAMERAS_TYPE = "cameras";
@@ -46,7 +46,7 @@ public class VideoUtil {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(new Date(System.currentTimeMillis()));
 			int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-			logger.info("dayOfWeek = " + dayOfWeek + ", parse week = " + week);
+			log.info("dayOfWeek = " + dayOfWeek + ", parse week = " + week);
 			if (week == dayOfWeek) {
 				return true;
 			}
@@ -56,12 +56,12 @@ public class VideoUtil {
 
 	public static boolean isSaveForce() {
 		boolean isSaveForce = propertyConfigUtil.getBoolean("isSaveForce");
-//		logger.info("isSaveForce="+isSaveForce);
+//		log.info("isSaveForce="+isSaveForce);
 		return isSaveForce;
 	}
 
 	public static void freeCaches() {
-		logger.info("freeCaches.........");
+		log.info("freeCaches.........");
 		try {
 			String drop_caches = VideoUtil.getDropCachesPath();
 			File shell = new File(drop_caches);
@@ -74,7 +74,7 @@ public class VideoUtil {
 				String cmd = "sh " + drop_caches.substring(drop_caches.lastIndexOf("/") + 1);
 				String filePath = drop_caches.substring(0, drop_caches.lastIndexOf("/") + 1);
 
-				logger.info("cmd=" + cmd);
+				log.info("cmd=" + cmd);
 				Process videoProcess = Runtime.getRuntime().exec(cmd, null, new File(filePath));
 
 				PrintStream errorPrintStream = new PrintStream(videoProcess.getErrorStream(), "Error");
@@ -86,7 +86,7 @@ public class VideoUtil {
 				try {
 					videoProcess.waitFor();
 				} catch (InterruptedException e) {
-					logger.error(e, e);
+					log.error("", e);
 				}
 				// 关闭两个线程
 				outPrintStream.destroy();
@@ -94,11 +94,11 @@ public class VideoUtil {
 				// 关闭命令主进程
 				videoProcess.destroy();
 			} else {
-				logger.info("not support OS");
+				log.info("not support OS");
 				return;
 			}
 		} catch (IOException e) {
-			logger.error(e, e);
+			log.error("", e);
 		}
 	}
 
@@ -143,7 +143,7 @@ public class VideoUtil {
 //	}
 
 	public static String getPicServiceAddr() {
-		// logger.info("getPicServiceAddr......");
+		// log.info("getPicServiceAddr......");
 		if (picService == null || picService.equals("")) {
 			picService = propertyConfigUtil.getValue("imageService");
 		}
@@ -154,7 +154,7 @@ public class VideoUtil {
 	}
 
 	public static String getSubtitleServiceAddr() {
-		// logger.info("getPicServiceAddr......");
+		// log.info("getPicServiceAddr......");
 		if (subtitleService == null || subtitleService.equals("")) {
 			subtitleService = propertyConfigUtil.getValue("subtitleService");
 		}
@@ -165,7 +165,7 @@ public class VideoUtil {
 	}
 
 	public static String getVideoServiceAddr() {
-		// logger.info("getPicServiceAddr......");
+		// log.info("getPicServiceAddr......");
 		if (videoService == null || videoService.equals("")) {
 			videoService = propertyConfigUtil.getValue("videoService");
 		}
@@ -176,7 +176,7 @@ public class VideoUtil {
 	}
 
 //	public static String getLocalServiceAddr() {
-//		logger.info("getLocalServiceAddr......");
+//		log.info("getLocalServiceAddr......");
 //		if (localService == null || localService.equals("")) {
 //			localService = propertyConfigUtil.getValue("localService");
 //		}

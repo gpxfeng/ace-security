@@ -1,4 +1,13 @@
 # ace-security
+
+### 目标新功能
+- 1:代码生成器功能
+- 2:增加用户注册或者是管理员新增用户  等要买服务器,实现第三方登录 
+- 3:爬虫项目引入
+- 4:增加百度地图
+- 5:增加系统搜索,把原生Lucene换成Elasticsearch
+- 5:更换注册中心为Nacos
+
 ## 说明
 项目是基于Cloud-Admin开发脚手架,具有统一授权、认证后台管理系统,其中包含具备用户管理、资源权限管理、网关API管理等多个模块,支持多业务系统并行开发,
 代码简洁,架构清晰。核心技术采用`Spring Boot2`以及`Spring Cloud (Finchley.M8)`相关核心组件,
@@ -23,12 +32,6 @@
 项目中springcloud redis mybaits整合 在ace-auth模块创建RedisConfiguration配置类,在ace-admin模块的biz上添加注解@Cache(key="user{1}")
 基于spring boot上的注解缓存，自带轻量级缓存管理页面。@Cache和@CacheClear比spring cache更轻量的缓存，支持单个缓存设置过期时间，可以根据前缀移除缓存。
 
-### 目标新功能
-- 1:代码生成器功能
-- 2:增加用户注册或者是管理员新增用户  等要买服务器,实现第三方登录 
-- 3:爬虫项目引入
-- 4:增加百度地图
-- 5:增加系统搜索，把原生Lucene换成Elasticsearch
 
 ### 遗留问题
 多进程单线程和多线程单进程有何优点，有何缺点
@@ -102,6 +105,7 @@ ace-security
 
 ## java笔记
 - 把List<String>里的所有元素变成一个字符串  StringUtils.join(string1.toArray(), ",")
+- Array查找操作binarySearch(数组名,元素),需要先排序Arrays.sort(数组名);
 - 后端接收json数据要加@requestbody
 - spring cache框架,缓存注解@Cacheable   用在方法上表示:该方法的返回值将被缓存起来
 - web.xml里的servlet-mapping下的url-pattern，控制了springMVC的url请求后缀
@@ -110,7 +114,35 @@ ace-security
 - java9以后,sun.misc.BASE64Decoder和sun.misc.BASE64Encoder不可用,api删除了,换成java.util.Base64.Decoder和java.util.Base64.Encoder    代码↓
 -      Base64.getEncoder().encodeToString(b)
 -      Base64.getDecoder().decode(s)
-- 项目用到了feign,pox文件要加 spring-boot-starter-web 依赖
+- 项目启动 ,使用的druid数据源，log4j报错,配置日志文件log4j.properties即可
+- spring boot SLF4J: Class path contains multiple SLF4J bindings. 使用idea查看结构,移除(exclusions)slf4j-log4j12依赖
+- springBoot中logback-spring.xml先于yml文件加载,logback.xml后于yml文件加载
+
+
+- 项目问题
+```
+用到了feign,pox文件要加 spring-boot-starter-web 依赖
+@EnableFeignClients,用来开启 Feign
+@FeignClient,用来标记要用Feign来拦截的请求接口。
+@ConditionalOnClass(Feign.class)  实例化一个Feign,Bean
+源码分析 https://my.oschina.net/xiaominmin/blog/1790053
+
+OkHttp 是一个高效的HTTP客户端,用来接收get,post等请求,上传文件等,高效的执行http，数据加载速度更快,缓存响应数据,避免了重复的网络请求,支持同步阻塞调用和带回调的异步调用
+FeignOkHttpConfig类创建了okHttpClient,好像没用到...........   好像跟  String httpRequest = HttpRequest.post(url , from, true).headers(headMap).body();有点像
+FeignOkHttpConfig类作用其实是使用 OKHttp 替换掉 Feign 默认的 Client 配置文件也添加了feign:      httpclient:enabled: false           okhttp: enabled: true
+
+
+WebConfiguration类实现了WebMvcConfigurer,可以自定义拦截器,拦截路径及规则
+
+
+@RemoteApplicationEventScan(basePackages = "com.cloud.auth.common") 
+spring cloud内置的BusJacksonMessageConverter转换器需要扫描到@RemoteApplicationEventScan,才可以实现转换
+spring cloud 消息总线机制,项目中好像没有用到...........
+
+
+
+```
+
 ------
 - list去重保持顺序
 ```
@@ -125,6 +157,7 @@ ace-security
   stringList.clear();
   stringList.addAll(newList);
 ```
+------
 - map遍历三种
 ```
 1
@@ -143,6 +176,7 @@ for (Map.Entry<String, Object> m : map.entrySet()) {
         System.out.println("key:" + m.getKey() + " value:" + m.getValue());
     }
 ```
+------
 - 不要在 foreach 循环里进行元素的 remove/add 操作,remove 元素请使用 Iterator方式，如果并发操作,需要对 Iterator 对象加锁
 ```
   Iterator<String> iterator = list.iterator(); 
@@ -153,6 +187,7 @@ for (Map.Entry<String, Object> m : map.entrySet()) {
      }
   }
 ```
+------
 - 深拷贝不仅拷贝对象本身,而且拷贝对象包含的引用指向的所有对象。浅拷贝就只拷贝对象属性,对象中的基本变量,引用地址不拷贝
 - 在entry转化为dto时,如果字段太多,并且需要全部转化时,应该使用支持浅拷贝或深拷贝的Utils  文章链接https://juejin.im/post/5ce7e78d518825064000531a  
 ```
@@ -193,6 +228,34 @@ for (Map.Entry<String, Object> m : map.entrySet()) {
   }
 ```
 ------
+- spring注解
+```
+@Configuration      //主要用于标记配置类，兼备Component的效果,可替换xml配置文件,并用于构建bean定义,初始化Spring容器。
+@EnableScheduling   //开启定时任务
+@Slf4j              //等于private static final Logger logger = LoggerFactory.getLogger(XXX.class)
+CommandLineRunner   //项目启动后执行的功能,实现后添加@Order(value=2),@Order 注解的执行优先级是按value值从小到大顺序
+@ComponentScan主要就是定义扫描的路径从中找出标识了@Component的类自动装配到spring的bean容器中,@Controller，@Service，@Repository注解其源码都有@Component
+
+
+自定义一个注解
+@Retention(RetentionPolicy.RUNTIME)  　　
+@Target(value={ElementType.METHOD,ElementType.TYPE})
+public @interface IgnoreUserToken {
+}
+-----@Retention定义了该Annotation被保留的时间长短,取值(RetentionPoicy)有:1.SOURCE:在源文件中有效(即源文件保留)
+2.CLASS:在class文件中有效(即class保留)3.RUNTIME:在运行时有效(即运行时保留)
+-----@Target说明了Annotation所修饰的对象范围,取值(ElementType)有:1.CONSTRUCTOR:用于描述构造器
+2.FIELD:用于描述域      3.LOCAL_VARIABLE:用于描述局部变量     4.METHOD:用于描述方法
+5.PACKAGE:用于描述包    6.PARAMETER:用于描述参数      7.TYPE:用于描述类、接口(包括注解类型) 或enum声明
+-----@Documented用于描述其它类型的annotation应该被作为被标注的程序成员的公共API,因此可以被例如javadoc此类的工具文档化。@Documented是一个标记注解,没有成员。
+-----@Inherited 元注解是一个标记注解,@Inherited阐述了某个被标注的类型是被继承的
+-----使用@interface自定义注解时,自动继承了java.lang.annotation.Annotation接口,由编译程序自动完成其他细节。在定义注解时,不能继承其他的注解或接口
+-----@Lazy注解注解的作用主要是减少springIOC容器启动的加载时间和@bean配合使用,延迟加载
+
+
+
+```
+------
 ## 爬虫笔记
 - webmagic的xpath不支持last()函数,使用jsoup 使用方式:https://www.open-open.com/jsoup/
 - 页面Console输入 window.navigator.webdriver 结果为true,判定为机器人,使用开发者模式    options.setExperimentalOption("excludeSwitches",new String[]{"enable-automation"});
@@ -211,6 +274,23 @@ for (Map.Entry<String, Object> m : map.entrySet()) {
 - recaptcha谷歌验证码  破解方式使用语音    反爬措施:限制ip、验证码、滑动验证、用户登录等 
 - nutch分布式爬虫,关键词:搜索引擎、爬虫、seo
 - FFMPEG用于处理音视频,常用命令
+```
+//查看源信息
+ffprobe -v quiet -print_format json -show_format -show_streams /home/data/vod/video/glass.mkv
+查看影片信息
+ffmpeg -i /home/data/vod/video/coldpursuit.mkv
+//转码 两种
+ffmpeg -y -i /home/data/vod/video/theupside.mkv -s 1152x480 -vcodec h264 acc
+ffmpeg -y -i /home/data/vod/video/glass.mkv -b:v 1.5M -minrate 1.5M -maxrate 1.5M -bufsize 3M /home/data/btTemporarySave/glass.mkv
+
+win 下载查看
+ffmpeg.exe -y -i https://www.rebo5566.com/20190516/LewBLuGX/index.m3u8 -vcodec copy -acodec copy D:\demo\LewBLuGX.MP4
+ffprobe.exe -v quiet -print_format json -show_format -show_streams D:\demo\LewBLuGX.MP4
+
+```
+- chrome.reg是win注册表文件,需要打开chrome输入框 chrome://flags/#run-all-flash-in-allow-mode
+,Enable flash avoidance between same-origin navigations设置为disabled,执行后网站不询问flash,
+- 无头模式下无法运行flash
 
 ## linux笔记
 - 重启reboot 
@@ -256,7 +336,7 @@ protected-mode yes 改为 protected-mode no
 $ redis-cli
 修改redis的保护模式为no，不启用
 127.0.0.1:6379> config set protected-mode no
-或者 config set requirepass 123 ->123是密码
+或者 config set requirepass 123 ->123是密码     公司服务器上需要更改端口或者使用复杂密码
 
 redis-cli -h ip地址 -p 6379   远程连接
 ```
@@ -265,6 +345,39 @@ redis-cli -h ip地址 -p 6379   远程连接
 - 127.0.0.1:6379>dbsize
 - 127.0.0.1:6379>flushall
 - 127.0.0.1:6379>exit
+
+- 项目上线(老式war包)
+```
+登录香港服务器 传包
+scp -P 端口 VodWebCrawler.war hysx@ip地址:/home/hysx 
+远程连接  输入密码并升权
+ssh -p 端口 hysx@ip地址
+***
+su
+***
+启动tomcat
+rm -f VodWebCrawler.war
+rm -rf VodWebCrawler
+mv VodWebCrawler.war /home/streamserver/tomcat-8.5.15_android_8118/webapps/VodWebCrawler.war
+cd /home/streamserver/tomcat-8.5.15_android_8118/bin
+./shutdown.sh
+./startup.sh
+看日志
+cd /home/streamserver/tomcat-8.5.15_android_8118/logs/VodWebCrawler
+tail -f VodWebCrawler.log  
+查看ffmpeg的线程
+ps -ef|grep ffmpeg
+强制终止线程：
+kill -9 线程ID
+查看文件
+ll -h /home/data/btTemporarySave/captainmarvel.mp4
+//赋权
+chmod 755 /home/data/vod/video/glass.mp4
+查看文件
+ll -h /home/data/video/captainmarvel.mp4
+//赋权
+chmod 755 /home/data/video/captainmarvel.mp4
+```
 
 
 ## idea使用
