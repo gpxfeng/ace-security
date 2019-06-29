@@ -7,7 +7,7 @@
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--<File>D:/logs/Vod/VodWebCrawler.log</File>-->
-        <File>./ace-modules/ace-vod/logs/Vod.log</File>
+       <File>./ace-modules/ace-vod/logs/Vod.log</File>
         <encoder>
             <pattern>%date [%level] [%thread] %logger{60} [%file : %line] %msg%n</pattern>
         </encoder>

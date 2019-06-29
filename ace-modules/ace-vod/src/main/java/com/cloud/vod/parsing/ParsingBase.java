@@ -6,20 +6,6 @@ import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-/**
- * Copyright: Copyright (c) 2019 LanRu-Caifu
- *
- * @ClassName: ParsingBase.java
- * @Description: 该类的功能描述
- *
- * @version: v1.0.0
- * @author: yuxianfeng
- * @date: 2019年2月27日 上午10:44:43
- *
- *        Modification History: Date Author Version Description
- *        ---------------------------------------------------------* 2019年2月27日
- *        Administrator v1.0.0 修改原因
- */
 public class ParsingBase extends Thread implements PageProcessor{
 
     private int threadNum = 1;

@@ -4,7 +4,9 @@ import com.cloud.api.vo.authority.PermissionInfo;
 
 import java.util.List;
 
-
+/**
+ * 这东西是拿来干嘛的？
+ */
 public class FrontUser {
     public String id;
     public String username;
@@ -13,6 +15,8 @@ public class FrontUser {
     private String image;
     private List<PermissionInfo> menus;
     private List<PermissionInfo> elements;
+
+
     public String getImage() {
         return image;
     }
@@ -20,8 +24,6 @@ public class FrontUser {
     public void setImage(String image) {
         this.image = image;
     }
-
-
 
     public String getId() {
         return id;

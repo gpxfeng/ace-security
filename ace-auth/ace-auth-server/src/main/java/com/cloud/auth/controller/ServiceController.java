@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("service")
 public class ServiceController extends BaseController<ClientBiz,Client>{
 
+    /**
+     * 更新服务编码
+     * @param id
+     * @param clients
+     * @return
+     */
     @RequestMapping(value = "/{id}/client", method = RequestMethod.PUT)
     @ResponseBody
     public ObjectRestResponse modifyUsers(@PathVariable int id, String clients){
@@ -19,6 +25,11 @@ public class ServiceController extends BaseController<ClientBiz,Client>{
         return new ObjectRestResponse().rel(true);
     }
 
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/{id}/client", method = RequestMethod.GET)
     @ResponseBody
     public ObjectRestResponse<ClientService> getUsers(@PathVariable int id){

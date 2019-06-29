@@ -24,10 +24,6 @@ spring:
   thymeleaf:
     mode: LEGACYHTML5
     cache: false
-#视图层控制
-#  mvc:
-#    view:
-#      prefix: classpath:/templates/
 
 
 # Mybatis配置
@@ -37,6 +33,29 @@ mybatis:
 
 logging:
   config: classpath:logback-spring.xml
+
+#连接到auth服务鉴权
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+auth:
+  serviceId: ace-auth
+  user:
+    token-header: Authorization
+  client:
+    id: ace-vod
+    secret: vod
+    token-header: x-client-token
 
 
 

@@ -35,20 +35,6 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * Copyright: Copyright (c) 2019 LanRu-Caifu
- *
- * @ClassName: PipelineBase.java
- * @Description: 该类的功能描述
- *
- * @version: v1.0.0
- * @author: yuxianfeng
- * @date: 2019年2月27日 下午2:19:22
- *
- *        Modification History: Date Author Version Description
- *        ---------------------------------------------------------* 2019年2月27日
- *        Administrator v1.0.0 修改原因
- */
 @Component
 public class PipelineBase implements Pipeline {
     public static Logger logger = LoggerFactory.getLogger(PipelineBase.class);

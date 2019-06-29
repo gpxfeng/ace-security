@@ -26,6 +26,23 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
+    <!--连接到auth-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.cloud</groupId>
+        <artifactId>ace-auth-client</artifactId>
+        <version>2.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>com.cloud</groupId>
+        <artifactId>ace-common</artifactId>
+        <version>2.0-SNAPSHOT</version>
+        <scope>compile</scope>
+    </dependency>
+
     <dependency>
         <groupId>org.mybatis.spring.boot</groupId>
         <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -46,6 +63,7 @@
         <artifactId>fastjson</artifactId>
         <version>${fastjson.version}</version>
     </dependency>
+
 
 
     <!--爬虫依赖-->
@@ -118,6 +136,28 @@
     </dependency>
 
 
+    <!--bt-->
+    <dependency>
+        <groupId>com.github.atomashpolskiy</groupId>
+        <artifactId>bt-core</artifactId>
+        <version>1.8</version>
+    </dependency>
+    <dependency>
+        <groupId>com.github.atomashpolskiy</groupId>
+        <artifactId>bt-http-tracker-client</artifactId>
+        <version>1.8</version>
+    </dependency>
+    <dependency>
+        <groupId>com.github.atomashpolskiy</groupId>
+        <artifactId>bt-dht</artifactId>
+        <version>1.8</version>
+    </dependency>
+    <dependency>
+        <groupId>com.github.atomashpolskiy</groupId>
+        <artifactId>bt-upnp</artifactId>
+        <version>1.8</version>
+    </dependency>
+
 
 
 </dependencies>
@@ -131,7 +171,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
                 <configuration>
                     <source>1.9</source>
                     <target>1.9</target>

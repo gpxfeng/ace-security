@@ -71,6 +71,8 @@ ace-security
 │     │
 │     ├─ace-admin-------------基础系统,用户登录,菜单、用户、模块等功能增删改查
 │     │
+│     ├─ace-bootAdmin---------springboot模块管理中心,写了个半成品,不太理解有什么用,官网https://github.com/codecentric/spring-boot-admin
+│     │
 │     ├─ace-generator---------代码生成器
 │     │
 │     ├─ace-interface---------接口,类似dto
@@ -117,6 +119,7 @@ ace-security
 - 项目启动 ,使用的druid数据源，log4j报错,配置日志文件log4j.properties即可
 - spring boot SLF4J: Class path contains multiple SLF4J bindings. 使用idea查看结构,移除(exclusions)slf4j-log4j12依赖
 - springBoot中logback-spring.xml先于yml文件加载,logback.xml后于yml文件加载
+- WARNING: An illegal reflective access operation has occurred  非法反射,JDK9对于第一次反射都有警告,可以忽略
 
 
 - 项目问题
@@ -138,6 +141,11 @@ WebConfiguration类实现了WebMvcConfigurer,可以自定义拦截器,拦截路�
 @RemoteApplicationEventScan(basePackages = "com.cloud.auth.common") 
 spring cloud内置的BusJacksonMessageConverter转换器需要扫描到@RemoteApplicationEventScan,才可以实现转换
 spring cloud 消息总线机制,项目中好像没有用到...........
+
+
+获取Spring上下文(ApplicationContext)的作用   不太理解
+首先容器启动后获取bean是先从子容器中取,如果springmvc把所有的包都扫描,那spring管理的bean都不取到,
+也就是事务等spring框架配置的那些bean都取不到,你拿到的只是普通的bean
 
 
 
@@ -251,10 +259,14 @@ public @interface IgnoreUserToken {
 -----@Inherited 元注解是一个标记注解,@Inherited阐述了某个被标注的类型是被继承的
 -----使用@interface自定义注解时,自动继承了java.lang.annotation.Annotation接口,由编译程序自动完成其他细节。在定义注解时,不能继承其他的注解或接口
 -----@Lazy注解注解的作用主要是减少springIOC容器启动的加载时间和@bean配合使用,延迟加载
-
+-----@Primary:自动装配时当出现多个Bean候选者时,被注解为@Primary的Bean将作为首选者,否则将抛出异常 
+-----@Autowired @Qualifier("personDaoBean") 存在多个实例配合使用
+-----@PathVariable :在方法里接收请求路径中占位符的值
 
 
 ```
+
+
 ------
 ## 爬虫笔记
 - webmagic的xpath不支持last()函数,使用jsoup 使用方式:https://www.open-open.com/jsoup/
@@ -290,7 +302,7 @@ ffprobe.exe -v quiet -print_format json -show_format -show_streams D:\demo\LewBL
 ```
 - chrome.reg是win注册表文件,需要打开chrome输入框 chrome://flags/#run-all-flash-in-allow-mode
 ,Enable flash avoidance between same-origin navigations设置为disabled,执行后网站不询问flash,
-- 无头模式下无法运行flash
+- 无头模式下无法运行flash,无法使用下载
 
 ## linux笔记
 - 重启reboot 
@@ -378,6 +390,7 @@ ll -h /home/data/video/captainmarvel.mp4
 //赋权
 chmod 755 /home/data/video/captainmarvel.mp4
 ```
+- grep -10 -i '抓不到我' catalina.log   查看日志中特定字符串以及前后信息内容命令 或者sz catalina.log 下载到本地 
 
 
 ## idea使用

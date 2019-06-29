@@ -5,6 +5,7 @@ import com.cloud.auth.common.util.jwt.IJWTInfo;
 
 
 public class ClientInfo implements IJWTInfo {
+    String id;
     String clientId;
     String name;
 
@@ -17,16 +18,9 @@ public class ClientInfo implements IJWTInfo {
     public void setId(String id) {
         this.id = id;
     }
-
-    String id;
-    public String getClientId() {
-        return clientId;
-    }
-
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
-
     public void setName(String name) {
         this.name = name;
     }

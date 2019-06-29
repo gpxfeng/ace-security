@@ -17,5 +17,6 @@
         <module>ace-generator</module>
         <module>ace-tool</module>
         <module>ace-vod</module>
+        <module>ace-bootAdmin</module>
     </modules>
 </project>

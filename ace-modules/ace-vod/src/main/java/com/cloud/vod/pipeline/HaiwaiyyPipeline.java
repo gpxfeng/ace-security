@@ -43,8 +43,7 @@ public class HaiwaiyyPipeline extends PipelineBase {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("name", movieName);
             map.put("type", vidType);
-            Dramainfo drama = null;
-            drama = dramainfoDao.findDramainfoByName(map);
+            Dramainfo  drama = dramainfoDao.findDramainfoByName(map);
             // 判断数据库是否存在
             if (drama == null) {
                 //格式化影片名称
@@ -135,7 +134,7 @@ public class HaiwaiyyPipeline extends PipelineBase {
 
                             String num = downMap.getKey().replaceAll("[^0-9]", "").trim();//集数
                             videoinfo.setNum(Integer.parseInt(num));
-                            videoinfo.setTemp(1);//季度有中文二和数字2 不做判断
+                            videoinfo.setTemp(1);//季度有中文二和数字2 不好做判断
                             videoinfo.setLanguage(language);
                             videoinfo.setQuality("720p");
                             videoinfos.add(videoinfo);
@@ -214,9 +213,6 @@ public class HaiwaiyyPipeline extends PipelineBase {
             if (StringUtils.isEmpty(language)) {
                 language = GetVideoLanguage(language);
             }
-//            不需要判断视频有无字幕
-//            boolean subtista = false;
-//            getasubtista(subtista, filePath);
 
             //创建数据对象，并发布
             List<Videoinfo> videoinfos = new ArrayList<>();
@@ -226,7 +222,6 @@ public class HaiwaiyyPipeline extends PipelineBase {
             videoinfo.setImageurl(imgFilePath);
             videoinfo.setFilepath(filePath);
             videoinfo.setPageurl(websiteName);
-//            videoinfo.setEnable(subtista ? 1 : 0);
             videoinfo.setEnable(1);
             videoinfo.setCreatetime(date);
             videoinfo.setUpdatetime(date);

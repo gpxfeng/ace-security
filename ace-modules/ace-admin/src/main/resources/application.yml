@@ -1,7 +1,3 @@
-logging:
-  level:
-    #        tk.mybatis: DEBUG
-    com.cloud.admin: DEBUG
 spring:
   application:
     name: ace-admin
@@ -45,8 +41,11 @@ sample:
     # When enabled=false, traces log to the console. Comment to send to zipkin
     enabled: false
 
+logging:
+  level:
+    com.cloud.admin: DEBUG
+
 mybatis:
-  basepackage: com.cloud.admin.mapper
   xmlLocation: classpath:mapper/**/*.xml
   mapper-locations: "classpath*:mapper/*.xml"
 
@@ -112,7 +111,7 @@ auth:
     token-header: Authorization
   client:
     id: ace-admin
-    secret: 123456
+    secret: admin
     token-header: x-client-token
 
 #redis-cache 相关
@@ -129,3 +128,4 @@ redis:
   sysName: ace-admin
   enable: true
   database: 0
+

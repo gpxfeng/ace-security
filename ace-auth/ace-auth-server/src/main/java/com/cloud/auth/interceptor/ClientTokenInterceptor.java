@@ -4,13 +4,10 @@ import com.cloud.auth.configuration.ClientConfiguration;
 import com.cloud.auth.service.AuthClientService;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class ClientTokenInterceptor implements RequestInterceptor {
-    private Logger logger = LoggerFactory.getLogger(ClientTokenInterceptor.class);
     @Autowired
     private ClientConfiguration clientConfiguration;
     @Autowired

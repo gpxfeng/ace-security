@@ -2,6 +2,7 @@ package com.cloud.auth.runner;
 
 import com.cloud.auth.common.util.jwt.RsaKeyHelper;
 import com.cloud.auth.configuration.KeyConfiguration;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -11,16 +12,16 @@ import java.util.Map;
 
 /**
  * @author ace
- * @create 2017/12/17.
  */
 @Configuration
+@Slf4j
 public class AuthServerRunner implements CommandLineRunner {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
-    private static final String REDIS_USER_PRI_KEY = "AG:AUTH:JWT:PRI";
-    private static final String REDIS_USER_PUB_KEY = "AG:AUTH:JWT:PUB";
-    private static final String REDIS_SERVICE_PRI_KEY = "AG:AUTH:CLIENT:PRI";
-    private static final String REDIS_SERVICE_PUB_KEY = "AG:AUTH:CLIENT:PUB";
+    private static final String REDIS_USER_PRI_KEY = "AUTH:JWT:PRI";
+    private static final String REDIS_USER_PUB_KEY = "AUTH:JWT:PUB";
+    private static final String REDIS_SERVICE_PRI_KEY = "AUTH:CLIENT:PRI";
+    private static final String REDIS_SERVICE_PUB_KEY = "AUTH:CLIENT:PUB";
 
     @Autowired
     private KeyConfiguration keyConfiguration;
@@ -43,7 +44,7 @@ public class AuthServerRunner implements CommandLineRunner {
             keyConfiguration.setServicePubKey(keyMap.get("pub"));
             redisTemplate.opsForValue().set(REDIS_SERVICE_PRI_KEY, RsaKeyHelper.toHexString(keyMap.get("pri")));
             redisTemplate.opsForValue().set(REDIS_SERVICE_PUB_KEY, RsaKeyHelper.toHexString(keyMap.get("pub")));
-
+            log.info("初始化成功");
         }
     }
 }
