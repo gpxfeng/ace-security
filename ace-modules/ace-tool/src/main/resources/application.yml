@@ -61,7 +61,6 @@ spring:
       read-timeout: 10000
 
 
-
 search:
   lucence:
     path: ./lucence/file
