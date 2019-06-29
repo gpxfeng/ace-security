@@ -5,6 +5,43 @@ logging:
 server:
   port: 9992
 
+eureka:
+  instance:
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+    # docker 部署开启
+  client:
+    serviceUrl:
+      #            defaultZone: http://localhost:8761/eureka/
+      # docker 部署开启
+      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+    registerWithEureka: false
+    fetchRegistry: false
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 120000
+  ConnectTimeout: 120000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+  OkToRetryOnAllOperations: false
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000
+      maxQueueSize: 1000
+      queueSizeRejectionThreshold: 500
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
+
 spring:
   profiles:
     active: dev
@@ -18,16 +55,14 @@ spring:
   sleuth:
     sampler:
       percentage: 1
+  elasticsearch:  #jest
+    jest:
+      uris: http://127.0.0.1:9200
+      read-timeout: 10000
+
+
 
 search:
   lucence:
     path: ./lucence/file
 
-# 具体看类:CloudStorageConfig
-oss:
-  type: 1 # 类型 1：七牛  2：阿里云  3：腾讯云
-  qiniuDomain: http://xxxxx.com
-  qiniuPrefix: oss
-  qiniuAccessKey: xxxxxx
-  qiniuSecretKey: xxxxx
-  qiniuBucketName: xxxBucket

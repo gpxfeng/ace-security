@@ -38,6 +38,9 @@
             </exclusions>
         </dependency>
 
+
+
+
         <!--luncene-->
         <dependency>
             <groupId>org.apache.lucene</groupId>
@@ -67,16 +70,28 @@
         </dependency>
 
         <!--ElasticSearch-->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>7.0.0</version>
+        </dependency>
+        <!--jest客户端-->
+        <dependency>
+            <groupId>io.searchbox</groupId>
+            <artifactId>jest</artifactId>
+            <version>6.3.1</version>
+        </dependency>
+        <!--rest-high客户端-->
         <!--<dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>elasticsearch-rest-high-level-client</artifactId>
             <version>6.2.4</version>
         </dependency>
-        <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch</artifactId>
-            <version>6.2.3</version>
-        </dependency>-->
+        -->
+
+
+
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -123,6 +138,10 @@
             <groupId>com.cloud</groupId>
             <artifactId>ace-common</artifactId>
             <version>2.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
     </dependencies>
     <build>
